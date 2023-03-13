@@ -1,0 +1,54 @@
+
+<div class="complete-page">
+    <div class="start-join-logo"><img src="assets/img/Capa 2join-logo.png"></div>
+    <div class="login-head">
+        <span class="hover-bright" style="border: none;" title="Click to sign up">Not a Join
+            user?</span>
+        <button [routerLink]="['../signup']" class="hover-dark" >Sign up</button>
+    </div>
+
+    <div class="login-display">
+        <div class="login-area" style="box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);">
+            <div class="headline">
+                <h1>Log in</h1>
+            </div>
+
+            <div class="headline-underline"></div>
+            <form class="form-style" [formGroup]="loginForm" ngNativeValidate (submit)="login()">
+                <div class="email-field">
+                    <input type="text" formControlName="username" class="form-control" placeholder="Username">
+                    <img class="mail-icon bg-white" src="assets/img/mail-icon.svg">
+                </div>
+
+                <div class="password-field">
+                    <input (keyup)="checkForInput()" formControlName="password" #passwordLogin type="password"
+                        class="form-control" placeholder="Password">
+                    <img [ngClass]="{'d-none': inputThere}" class="password-icon bg-white" src="assets/img/password-icon.svg">
+                    <img (click)="showPw()" [ngClass]="{ 'd-none': !inputThere || !passwordShown }"
+                        class="password-icon bg-white" src="assets/img/pw-no-show-icon.svg" style="cursor: pointer ;">
+                    <img (click)="showPw()" #pwShowLogin [ngClass]="{ 'd-none': !inputThere || passwordShown }"
+                        class="password-icon d-none bg-white" src="assets/img/pw-show-icon.svg" style="cursor: pointer ;">
+
+                </div>
+
+                <span class="user-not-found d-none">User not found. Try again</span>
+
+                <div class="rememberMe-forgotPassword">
+                    <div class="remember-me"> <input type="checkbox">Remember me</div>
+                    <a class="forgot-password" [routerLink]="['../forgotpassword']">Forgot my password</a>
+                </div>
+
+                <div class="login-guestlogin">
+                    <button class="button hover-dark" style="width: 110px;">Log in</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="login-head-mobile">
+        <span class="hover-bright" style="border: none;">Not a Join user?</span>
+        <button class="hover-dark" [routerLink]="['../signup']">Sign up</button>
+    </div>
+
+
+</div>

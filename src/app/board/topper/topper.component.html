@@ -1,0 +1,10 @@
+<div class="topper">
+    <span style="font-size: small;">Kanban Project Management Tool</span>
+    <div class="img-topper">
+        <img src="assets/img/questionmark_topper.svg" [routerLink]="['/board', boardname, 'help']" class="questionmark-topper">
+        <span (click)="showLogout = !showLogout" class="topper-name-destop">{{ username }}</span>
+    </div>
+</div>
+<div class="logout-button" [ngClass]="{'d-none': !showLogout}" (click)="showLogout = false">
+    <div class="logout-button-container"><div (click)="logout()">Log out</div></div>
+</div>

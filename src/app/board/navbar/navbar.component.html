@@ -1,0 +1,43 @@
+<div class="nav-bar">
+    <img src="assets/img/logo_lefter.svg">
+    <a [routerLink]="['/board', boardname, 'summary']">
+        <div class="content-section" style="margin-top: 100px;">
+            <div>
+                <img src="assets/img/icon-summary.svg">
+            </div>
+            <span>Summary</span>
+        </div>
+    </a>
+    <a [routerLink]="['/board', boardname, 'board']">
+        <div class="content-section" >
+            <div>
+                <img src="assets/img/icon-board.svg">
+            </div>
+            <span>Board</span>
+        </div>
+    </a>
+    <a [routerLink]="['/board', boardname, 'addtask']">
+        <div class="content-section">
+            <div>
+                <img src="assets/img/icon-addtask.svg">
+            </div>
+            <span>Add Task</span>
+        </div>
+    </a>
+    <a [routerLink]="['/board', boardname, 'contacts']">
+        <div class="content-section">
+            <div>
+                <img src="assets/img/icon-contacts.svg">
+            </div>
+            <span>Contacts</span>
+        </div>
+    </a>
+    <a [routerLink]="['/board', boardname, 'legalnotice']">
+        <div class="content-section" style="position: absolute; bottom: 24px">
+            <div>
+                <img src="assets/img/icon-info.svg">
+            </div>
+            <span>Legal notice</span>
+        </div>
+    </a>
+</div>

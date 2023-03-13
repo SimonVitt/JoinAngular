@@ -1,0 +1,16 @@
+<div class="yourboards-content">
+    <div class="heading">
+        <h1>Your Boards</h1>
+        <div class="headline-underline"></div>
+        <span>Please click on one of your boards to see the details!</span>
+    </div>
+    <div class="heading create" (click)="dialogOpen = true">
+        <span>Create a new Board</span>
+    </div>
+    <div *ngIf="boards" class="boards">
+        <div *ngFor="let board of boards" class="board" [routerLink]="[ '/board', board.name]">
+            <span>{{ board.name }}</span>
+        </div>
+    </div>
+    <app-addboarddialog [id]="id" *ngIf="dialogOpen" (closeDialog)="dialogOpen = false"></app-addboarddialog>
+</div>
