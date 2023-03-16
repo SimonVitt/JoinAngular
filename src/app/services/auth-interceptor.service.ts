@@ -8,7 +8,7 @@ import { catchError, EMPTY, empty, Observable, throwError } from 'rxjs';
 })
 export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
 

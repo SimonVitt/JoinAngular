@@ -1,14 +1,15 @@
-import { ErrorHandler, Injectable } from '@angular/core';
+import { ErrorHandler, EventEmitter, Injectable, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler{
 
-  constructor() { }
+  showError = new Subject<string>();
+  
+  constructor() {}
 
-  handleError(error: any): void {
-    console.log(error);
-    
+  handleError(error: Error): void {
+    console.log(error)
+    this.showError.next(error.name);
   }
 }

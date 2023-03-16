@@ -7,7 +7,7 @@
     <div class="heading create" (click)="dialogOpen = true">
         <span>Create a new Board</span>
     </div>
-    <div *ngIf="boards" class="boards">
+    <div *ngIf="boards.length > 0" class="boards">
         <div *ngFor="let board of boards" class="board" [routerLink]="[ '/board', board.name]">
             <span>{{ board.name }}</span>
         </div>

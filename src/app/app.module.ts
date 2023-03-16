@@ -25,13 +25,13 @@ import { GlobalErrorHandlerService } from './services/global-error-handler.servi
   ],
   providers: [
     {
+     provide: ErrorHandler,
+     useClass: GlobalErrorHandlerService
+    },
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-     },
-     {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandlerService
      }
   ],
   bootstrap: [AppComponent]

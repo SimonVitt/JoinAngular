@@ -12,8 +12,8 @@ export class ShowpasswordService {
   /**
    * This functions checks if the user put something in the inputfield
    */
-  checkForInput(passwordLogin:ElementRef) {
-    if (passwordLogin.nativeElement.value.length > 0){
+  checkForInput(password:ElementRef) {
+    if (password.nativeElement.value.length > 0){
       return true;
     }else{
       return false;

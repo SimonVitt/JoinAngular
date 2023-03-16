@@ -8,39 +8,39 @@
             </div>
 
             <div class="headline-underline"></div>
-            <form (submit)="signUp()" class="form-style">
+            <form (submit)="signUp()" [formGroup]="signupForm" class="form-style">
                 <div class="signup-name-field">
-                    <input required type="text" class="form-control" placeholder="Name"
-                        aria-label="First name">
+                    <input formControlName="username" type="text" class="form-control" placeholder="Name">
                     <img class="name-signup-icon bg-white" src="assets/img/name-icon.svg" alt="">
                 </div>
 
                 <div class="signup-email-field">
-                    <input required type="email" class="form-control" placeholder="Email"
-                        aria-label="First name">
+                    <input formControlName="email" type="email" class="form-control" placeholder="Email">
                     <img class="mail-signup-icon bg-white" src="assets/img/mail-icon.svg" alt="">
 
                 </div>
 
                 <div class="signup-password-field">
-                    <input #passwordSignUp (keyup)="checkForInput()" required
+                    <input #passwordSignUp formControlName="password" (keyup)="checkForInput()" required
                         type="password" class="form-control" placeholder="Password" aria-label="First name">
                     <img [ngClass]="{'d-none': inputThere}" class="password-signup-icon bg-white" src="assets/img/password-icon.svg">
                     <img (click)="showPw()" class="password-icon bg-white" src="assets/img/pw-no-show-icon.svg"
                         style="cursor: pointer ;" [ngClass]="{ 'd-none': !inputThere || !passwordShown }">
                     <img (click)="showPw()" class="password-icon bg-white" [ngClass]="{ 'd-none': !inputThere || passwordShown }" src="assets/img/pw-show-icon.svg"
                         style="cursor: pointer ;">
-
-
                 </div>
 
-                <span class="user-not-found d-none"
-                    style="margin-bottom: -10px ; margin-top: 17px;">User already exists. Please <b
-                        style="color: #28ABE2 ;">log in</b> or <b style="text-decoration: underline;">change
-                        Email</b>.</span>
+                <div>
+                    <span class="authErrorPlaceholder" *ngIf="!errorLogin && !errorCreate">Hallo</span>
+                </div>
 
-
-                <button class="button mt-4" type="submit">Sign up</button>
+                <div>
+                    <span class="authError" *ngIf="errorCreate && !errorLogin">Username or Email already in use!</span>
+                </div>
+                <div>
+                    <span class="authError" *ngIf="!errorCreate && errorLogin">Oops! Something went wrong. Your Account was still created though!</span>
+                </div>
+                <button style="margin-top: 8px;" class="button mt-4 hover-dark" [ngClass]="{'disabledBtn': signupForm.invalid}" [disabled]="signupForm.invalid" type="submit">Sign up</button>
             </form>
 
 

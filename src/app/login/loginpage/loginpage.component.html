@@ -14,7 +14,7 @@
             </div>
 
             <div class="headline-underline"></div>
-            <form class="form-style" [formGroup]="loginForm" ngNativeValidate (submit)="login()">
+            <form class="form-style" [formGroup]="loginForm" (submit)="login()">
                 <div class="email-field">
                     <input type="text" formControlName="username" class="form-control" placeholder="Username">
                     <img class="mail-icon bg-white" src="assets/img/mail-icon.svg">
@@ -34,12 +34,20 @@
                 <span class="user-not-found d-none">User not found. Try again</span>
 
                 <div class="rememberMe-forgotPassword">
-                    <div class="remember-me"> <input type="checkbox">Remember me</div>
+                    <div class="remember-me"> <input formControlName="rememberMe" type="checkbox">Remember me</div>
                     <a class="forgot-password" [routerLink]="['../forgotpassword']">Forgot my password</a>
                 </div>
 
+                <div>
+                    <span class="authErrorPlaceholder" *ngIf="!authError">Hallo</span>
+                </div>
+
+                <div>
+                    <span class="authError" *ngIf="authError">Wrong Username or Password</span>
+                </div>
+
                 <div class="login-guestlogin">
-                    <button class="button hover-dark" style="width: 110px;">Log in</button>
+                    <button type="submit" [ngClass]="{'disabledBtn': loginForm.invalid}" [disabled]="loginForm.invalid" class="button hover-dark" style="width: 110px;">Log in</button>
                 </div>
             </form>
         </div>

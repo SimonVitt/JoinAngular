@@ -1,1 +1,7 @@
-<p>networkerror works!</p>
+<div (click)="closeNetworkalert()" class="background-alert" >
+        <div class="alert dialog" (click)="stopPropagation($event)">
+            <h3>Oops! Something went wrong. Try again later!</h3>
+            <h2>{{ status }}</h2>
+            <button style="width: 80px;" (click)="closeNetworkalert()">Ok</button>
+        </div>
+</div>

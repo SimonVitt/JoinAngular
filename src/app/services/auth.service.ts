@@ -13,38 +13,60 @@ export class AuthService {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  async logIn(username: string, pw: string) {
+  async logIn(username: string, pw: string, rememberMe: boolean) {
     let resp: any = await this.loginWithUsernameAndPw(username, pw);
-    localStorage.setItem('token', resp['token']);
-    localStorage.setItem('username', resp['username']);
+    if(rememberMe){
+      localStorage.setItem('token', resp['token']);
+      localStorage.setItem('username', resp['username']);
+    }else{
+      sessionStorage.setItem('token', resp['token']);
+      sessionStorage.setItem('username', resp['username']);
+    }
     this.router.navigateByUrl(`yourboards`);
   }
 
-  loginWithUsernameAndPw(username: string, pw: string) {
+  async loginWithUsernameAndPw(username: string, pw: string) {
     const body = {
       "username": username,
       "password": pw
     }
-    return lastValueFrom(this.http.post("http://127.0.0.1:8000/members/login/", body));
+    return await lastValueFrom(this.http.post("http://127.0.0.1:8000/members/login/", body));
   }
 
   logout(){
     localStorage.removeItem('username');
-    localStorage.removeItem('id');
+    sessionStorage.removeItem('username');
     lastValueFrom(this.http.get("http://127.0.0.1:8000/members/logout/"));
-    //localStorage.removeItem('token');
-    //this.router.navigateByUrl('login');
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
+    this.router.navigateByUrl('/login');
   }
 
   userIsAuthenticated(){
-    let token = localStorage.getItem('token');
-    if(localStorage.getItem('token')){
-      if(token!.length > 20){
+    let tokenL = localStorage.getItem('token');
+    let tokenS = sessionStorage.getItem('token');
+    if(tokenL || tokenS){
+      if(tokenL!.length > 20 || tokenS!.length > 20){
+        return true;
+      }
+      return false;
+    }
+    if(tokenS){
+      if(tokenS!.length > 20){
         return true;
       }
       return false;
     }
     return false;
+  }
+
+  async signup(username: string, pw: string, email: string){
+    const body = {
+      "username": username,
+      "password": pw,
+      "email": email
+    }
+    return await lastValueFrom(this.http.post("http://127.0.0.1:8000/members/signup/", body));
   }
 
 }
