@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { ShowpasswordService } from 'src/app/services/showpassword.service';
 
 @Component({
@@ -23,15 +24,17 @@ export class LoginpageComponent {
   authError: boolean = false;
 
 
-  constructor(private router: Router, private pwervice: ShowpasswordService, private authService: AuthService) {}
+  constructor(private router: Router, private pwervice: ShowpasswordService, private authService: AuthService, private loadingService: LoadingService) {}
 
   async login() {
 
+    this.loadingService.setLoading(true);
     try{
       await this.authService.logIn(this.loginForm.get('username')!.value, this.loginForm.get('password')!.value, this.loginForm.get('rememberMe')!.value);
     }catch(e){
       this.authError = true;
     }
+    this.loadingService.setLoading(false);
   }
 
   checkForInput() {

@@ -84,3 +84,23 @@
 .d-none{
     display: none;
 }
+
+.logoutBtn{
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background-color: rgb(42, 54, 71);
+    border-radius: 16px;
+    height: 40px;
+    width: 100px;
+    color: white;
+    font-size: 16px;
+    border-color: transparent;
+    font-weight: 600;
+}
+
+@media(max-width: 800px){
+    .yourboards-content{
+        padding-top: 80px;
+    }
+}

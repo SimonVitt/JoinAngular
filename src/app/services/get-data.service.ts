@@ -32,4 +32,12 @@ export class GetDataService {
   createBoard(body: any){
     return lastValueFrom(this.http.post(`http://127.0.0.1:8000/api/createboard/`, body));
   }
+
+  sendEmailReset(body: any){
+    return lastValueFrom(this.http.post(`http://127.0.0.1:8000/members/sendemail/`, body));
+  }
+
+  resetPassword(body: any){
+    return lastValueFrom(this.http.patch(`http://127.0.0.1:8000/members/changepassword/`, body));
+  }
 }

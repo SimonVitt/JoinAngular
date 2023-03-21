@@ -1,2 +1,3 @@
 <router-outlet></router-outlet>
-<app-networkerror class="network-dialog" [status]="errorMsg!" *ngIf="showError" (closeNetwork)="showError = false"></app-networkerror>
+<app-loading class="overlay" *ngIf="loading"></app-loading>
+<app-networkerror class="overlay" [status]="errorMsg!" *ngIf="showError" (closeNetwork)="showError = false"></app-networkerror>

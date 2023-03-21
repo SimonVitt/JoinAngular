@@ -33,20 +33,19 @@ export class AuthService {
     return await lastValueFrom(this.http.post("http://127.0.0.1:8000/members/login/", body));
   }
 
-  logout(){
+  async logout(){
     localStorage.removeItem('username');
     sessionStorage.removeItem('username');
-    lastValueFrom(this.http.get("http://127.0.0.1:8000/members/logout/"));
+    await lastValueFrom(this.http.get("http://127.0.0.1:8000/members/logout/"));
     localStorage.removeItem('token');
     sessionStorage.removeItem('token');
-    this.router.navigateByUrl('/login');
   }
 
   userIsAuthenticated(){
     let tokenL = localStorage.getItem('token');
     let tokenS = sessionStorage.getItem('token');
-    if(tokenL || tokenS){
-      if(tokenL!.length > 20 || tokenS!.length > 20){
+    if(tokenL){
+      if(tokenL!.length > 20){
         return true;
       }
       return false;

@@ -13,16 +13,10 @@
             <div [ngClass]="{'d-none': !openContacts}" class="category-inputfield-selector">
                 <div *ngFor="let user of allusers" (click)="selectContact(user.id)" class="display-flex space-between align-center category-hover flexdirectionrow">
                     <span  class="selected-font">{{ user.username }}</span>
-                    <input id="input-contact{{user.id}}" (click)="stopPropagation($event)" [checked]="id == user.id" style="margin-right: 16px;" class="mr-20 unchecked" type="checkbox">
+                    <input id="input-contact{{user.id}}" (click)="stopPropagation($event)" [checked]="username == user.username" style="margin-right: 16px;" class="mr-20 unchecked" type="checkbox">
                 </div>
             </div>
         </div>
-        <button (click)="createBoard()">Create Board</button>
-    </div>
-    <div (click)="closeAlert($event)" [ngClass]="{'d-none': !showPopUpInput}" class="background" >
-        <div class="alert dialog" (click)="stopPropagation($event)">
-            <h3 #popUpText></h3>
-            <button style="width: 80px;" (click)="showPopUpInput = false">Ok</button>
-        </div>
+        <button [ngClass]="{'disabledBtn': boardname.length < 5 || assignedUsers.length == 0}" [disabled]="boardname.length < 5 || assignedUsers.length == 0" (click)="createBoard()">Create Board</button>
     </div>
 </div>

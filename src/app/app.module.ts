@@ -4,23 +4,23 @@ import { AllboardsModule } from './allboards/allboards.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BoardModule } from './board/board.module';
 import { LoginModule } from './login/login.module';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { NetworkerrorComponent } from './global/networkerror/networkerror.component';
 import { GlobalErrorHandlerService } from './services/global-error-handler.service';
+import { LoadingComponent } from './global/loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NetworkerrorComponent
+    NetworkerrorComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LoginModule,
     AllboardsModule,
-    BoardModule,
     HttpClientModule
   ],
   providers: [

@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { ShowpasswordService } from 'src/app/services/showpassword.service';
 
 @Component({
@@ -23,9 +24,10 @@ export class SignuppageComponent {
   inputThere: boolean = false;
 
 
-  constructor(private router: Router, private pwervice: ShowpasswordService, private authService: AuthService) { }
+  constructor(private router: Router, private pwervice: ShowpasswordService, private authService: AuthService, private loadingService: LoadingService) { }
 
   async signUp(){
+    this.loadingService.setLoading(true);
     const username: string = this.signupForm.get('username')!.value;
     const password: string = this.signupForm.get('password')!.value;
     const email: string = this.signupForm.get('email')!.value;
@@ -35,6 +37,7 @@ export class SignuppageComponent {
     }catch(e){
       this.errorCreate = true;
     }
+    this.loadingService.setLoading(false);
   }
 
   async login(username: string, password: string){

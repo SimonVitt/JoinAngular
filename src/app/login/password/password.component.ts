@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { GetDataService } from 'src/app/services/get-data.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-password',
@@ -9,22 +11,28 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class PasswordComponent {
   emailForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email])
-  })
+  });
 
   emailError: boolean = false;
   emailSuccess: boolean = false;
 
-  sendMail(){
+  constructor(private loadingService: LoadingService, private dataService: GetDataService){}
+
+  async sendMail(){
+    this.loadingService.setLoading(true);
     try{
-      console.log(this.emailForm.get('email')!.value);
+      let body = {
+        "email": this.emailForm.get('email')!.value
+      }
+      await this.dataService.sendEmailReset(body)
       this.emailSuccess =true;
-      this.emailError = false;
+      this.emailError=false;
       this.emailForm.get('email')!.reset();
     }catch(e){
       this.emailError = true;
       this.emailSuccess =false;
     }
-    
+    this.loadingService.setLoading(false);
   }
 
 }

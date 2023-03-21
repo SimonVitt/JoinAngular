@@ -12,5 +12,6 @@
             <span>{{ board.name }}</span>
         </div>
     </div>
-    <app-addboarddialog [id]="id" *ngIf="dialogOpen" (closeDialog)="dialogOpen = false"></app-addboarddialog>
+    <app-addboarddialog *ngIf="dialogOpen" style="z-index: 1;" (closeDialog)="dialogOpen = false"></app-addboarddialog>
+    <button (click)="logout()" class="logoutBtn hover-dark">Logout</button>
 </div>
