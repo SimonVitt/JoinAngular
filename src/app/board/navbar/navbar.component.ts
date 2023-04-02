@@ -7,5 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class NavbarComponent {
   @Input() boardname!: string;
-  @Input() id!: string;
 }

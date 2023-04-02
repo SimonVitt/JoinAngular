@@ -1,0 +1,11 @@
+<div class="task-card">
+    <span class="card-category" [style.background-color]="task.category.color">{{ task.category.name }}</span>
+    <span class="card-title">{{ task.title }}</span>
+    <span class="card-description">{{ task.description }}</span>
+    <div class="card-bottom">
+        <div class="contributors-container">
+            <span *ngFor="let user of task.assigned_users" class="contributors-circle" [style.background-color]="user.color">{{ user.username.charAt(0).toUpperCase() }}</span>
+        </div>
+        <img src="assets/img/{{task.priority}}.svg">
+    </div>
+</div>

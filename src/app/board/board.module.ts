@@ -11,6 +11,12 @@ import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HelpComponent } from './help/help.component';
 import { ContainerboardComponent } from './containerboard/containerboard.component';
+import { AddTaskDialogComponent } from './add-task-dialog/add-task-dialog.component';
+import { BoardTaskComponent } from './board-task/board-task.component';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
+import { FormsModule } from '@angular/forms';
+import { TaskAddedSuccessPopupComponent } from './task-added-success-popup/task-added-success-popup.component';
 
 
 @NgModule({
@@ -23,11 +29,17 @@ import { ContainerboardComponent } from './containerboard/containerboard.compone
     LegalNoticeComponent,
     ContactsComponent,
     HelpComponent,
-    ContainerboardComponent
+    ContainerboardComponent,
+    AddTaskDialogComponent,
+    BoardTaskComponent,
+    TaskDetailComponent,
+    EditTaskComponent,
+    TaskAddedSuccessPopupComponent
   ],
   imports: [
     CommonModule,
-    BoardRoutingModule
+    BoardRoutingModule,
+    FormsModule
   ]
 })
 export class BoardModule { }

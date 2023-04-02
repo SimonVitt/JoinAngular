@@ -1,0 +1,17 @@
+.dialog-taskadded {
+    z-index: 999;
+    width: 280px;
+    display: flex;
+    background-color: #2A3647;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    padding: 16px;
+
+    img {
+        height: 24px;
+        object-fit: contain;
+        margin-left: 32px;
+    }
+}

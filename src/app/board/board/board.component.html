@@ -1,0 +1,72 @@
+<div class="inner-content">
+    <div class="heading-search-add">
+        <h1 class="main-heading">Board</h1>
+        <div class="input-and-button-container">
+            <div class="board-input-container">
+                <input class="board-inputfield" [(ngModel)]="searchInput" type="text" placeholder="Find Task" (keyup)="searchTask()">
+                <div style="display: flex ;">
+                    <span class="vertical-line">|</span>
+                    <img class="search-icon" src="assets/img/search-icon.svg" alt="">
+                </div>
+            </div>
+            <button class="add-task-btn" (click)="showAddTask('todo')">Add task <img style="margin-left: 5px; height: 15px; width: 15px;"src="assets/img/plus-icon.svg"> </button>
+        </div>
+    </div>
+
+    <div class="tasks-container">
+
+        <div class="task" ondrop="moveToTodo('todoTasksBoard')" ondragleave="removeHighlight('todoTasksBoard')" ondragover="allowDrop(event); highlight('todoTasksBoard')">
+
+            <div class="tasks-heading">
+                <h3>To do</h3>
+                <span class="plus-icon" (click)="showAddTask('todo')"></span>
+            </div>
+
+            <div class="tasks-main">
+                <app-board-task *ngFor="let task of todoTasks" [task]="task" [ngClass]="{'d-none': !task.show}"  (click)="showTaskDetails(task)" draggable="true" ondragstart="startDragging()" ></app-board-task>
+            </div>
+
+        </div>
+
+        <div class="task" ondrop="moveToProgress('progressTasksBoard')" ondragleave="removeHighlight('progressTasksBoard')" ondragover="allowDrop(event); highlight('progressTasksBoard')">
+
+            <div class="tasks-heading">
+                <h3>In progress</h3>
+                <span class="plus-icon" (click)="showAddTask('progress')"></span>
+            </div>
+
+            <div class="tasks-main" >
+                <app-board-task *ngFor="let task of progressTasks" [task]="task" [ngClass]="{'d-none': !task.show}" (click)="showTaskDetails(task)" draggable="true" ondragstart="startDragging()" ></app-board-task>
+            </div>
+
+        </div>
+
+        <div class="task" ondrop="moveToFeedback('feedbackTasksBoard')" ondragleave="removeHighlight('feedbackTasksBoard')" ondragover="allowDrop(event); highlight('feedbackTasksBoard')">
+
+            <div class="tasks-heading">
+                <h3>Feedback</h3>
+                <span class="plus-icon" (click)="showAddTask('feedback')"></span>
+            </div>
+
+            <div class="tasks-main">
+                <app-board-task *ngFor="let task of feedbackTasks" [task]="task" [ngClass]="{'d-none': !task.show}" (click)="showTaskDetails(task)" draggable="true" ondragstart="startDragging()" ></app-board-task>
+            </div>
+
+        </div>
+
+        <div class="task" ondrop="moveToDone('doneTasksBoard')" ondragleave="removeHighlight('doneTasksBoard')" ondragover="allowDrop(event); highlight('doneTasksBoard')">
+
+            <div class="tasks-heading">
+                <h3>Done</h3>
+                <span class="plus-icon" (click)="showAddTask('done')"></span>
+            </div>
+
+            <div class="tasks-main">
+                <app-board-task *ngFor="let task of doneTasks" [task]="task" [ngClass]="{'d-none': !task.show}" (click)="showTaskDetails(task)" draggable="true" ondragstart="startDragging()" ></app-board-task>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

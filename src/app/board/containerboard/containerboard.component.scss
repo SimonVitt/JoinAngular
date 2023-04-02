@@ -1,0 +1,39 @@
+.popups-container{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+}
+
+.popups-container2{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 102;
+}
+
+
+.addTaskTemp{
+    width: 80%;
+    max-width: 1024px;
+}
+
+.taskaddedpopup{
+    position: fixed;
+    top: 78%;
+    left: calc(50% + 116px);
+    transform: translateX(-50%);
+    z-index: 99;
+}

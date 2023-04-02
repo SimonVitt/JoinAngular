@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetDataService } from 'src/app/services/get-data.service';
+import { ManagePopupsService } from '../services/manage-popups.service';
+import { SharedDataService } from '../services/shared-data.service';
 
 @Component({
   selector: 'app-containerboard',
@@ -9,14 +11,45 @@ import { GetDataService } from 'src/app/services/get-data.service';
 })
 export class ContainerboardComponent {
   boardname: string;
-  id: string;
+  tasks: Array<any> | undefined;
+  statusToCreate: string = 'todo';
 
-  constructor(private route: ActivatedRoute, private dataService: GetDataService){
+  showTaskDetail: boolean = false;
+  showAddTaskDialog: boolean = false;
+  taskadded: boolean = false;
+  showEditTask: boolean = false;
+
+  constructor(private route: ActivatedRoute, private sharedData: SharedDataService, private managePopupsS: ManagePopupsService){
     this.boardname = this.route.snapshot.paramMap.get('boardname')!;
-    this.id = this.route.snapshot.paramMap.get('id')!;
+    this.managePopupsS.showAddTaskDialogS.subscribe((status) => {
+      this.showAddTaskDialog = status[0];
+      this.statusToCreate = status[1];
+    });
+    this.managePopupsS.showTaskDetailS.subscribe((status) => {
+      this.showTaskDetail = status;
+    });
+    this.managePopupsS.taskAddedSubject.subscribe((show) => {
+      this.taskadded = show;
+    });
+    this.managePopupsS.editTaskSubject.subscribe((show) => {
+      this.showEditTask = show;
+    });
   }
 
   async ngOnInit(){
-    
+    this.sharedData.setBoardname(this.boardname);
+    await this.sharedData.setTasks();
+    await this.sharedData.setCategories();
+    await this.sharedData.setUsers();
+    this.tasks = this.sharedData.allTasks;
+  }
+
+  closeCard(){
+    this.showAddTaskDialog = false;
+    this.showTaskDetail = false;
+  }
+
+  closeCardEdit(){
+    this.showEditTask = false;
   }
 }

@@ -1,3 +1,11 @@
-<app-navbar [boardname]="boardname" [id]="id"></app-navbar>
-<app-topper [boardname]="boardname" [id]="id"></app-topper>
+<app-navbar [boardname]="boardname"></app-navbar>
+<app-topper [boardname]="boardname"></app-topper>
 <router-outlet></router-outlet>
+<div class="popups-container" *ngIf="showTaskDetail || showAddTaskDialog" (click)="closeCard()">
+    <app-task-detail *ngIf="showTaskDetail"></app-task-detail>
+    <app-add-task-dialog [status]="statusToCreate" class="addTaskTemp" *ngIf="showAddTaskDialog"></app-add-task-dialog>
+</div>
+<div class="popups-container2" *ngIf="showEditTask" (click)="closeCardEdit()">
+    <app-edit-task class="addTaskTemp"></app-edit-task>
+</div>
+<app-task-added-success-popup *ngIf="taskadded" class="taskaddedpopup"></app-task-added-success-popup>

@@ -1,0 +1,43 @@
+<div class="card-container" (click)="stopPropagation($event)">
+    <img class="close-overlay-btn" src="assets/img/close.svg" (click)="closeCard()">
+    <img class="back-overlay-btn" src="assets/img/backButton.svg" (click)="closeCard()">
+    <button class="edit-overlay-btn" (click)="showEditTask()"><img src="assets/img/pencil.svg"></button>
+    <button class="edit-overlay-btn-delete" (click)="showDelete = true"><img src="assets/img/trash.png"></button>
+    <span class="directionLTR"><span class="card-category-big" [style.background-color]="task.category.color">{{ task.category.name }}</span></span>
+    <span class="card-title-big directionLTR">{{task.title}}</span>
+    <span class="card-description-big directionLTR">{{ task.description }}</span>
+    <div class="due-date-prio directionLTR">
+        <span style="font-weight:bold; margin-right: 50px;">Due date:</span>
+        <span>{{ task.due_date | date:"dd.MM.yyyy"}}</span>
+    </div>
+    <div class="due-date-prio directionLTR">
+        <span style="font-weight:bold; margin-right: 50px;">Priority:</span>
+        <span style="display:flex"><img src="assets/img/{{task.priority}}-filled.svg" class="priority-tag"></span>
+    </div>
+    <!--<span class="headingMoveStatusBtns directionLTR">Move Task to:</span>
+    <div class="moveStatusBtns">
+        <button class="edit-overlay-btn-statuslast" 
+            onclick="lastStatus()"></button>
+        <button class="edit-overlay-btn-statusnext"
+            onclick="nextStatus()"></button>
+    </div>-->
+    <div class="assigned directionLTR">
+        <span class="due-date-prio" style="font-weight:bold;">Assigned to:</span>
+        <div>
+            <div *ngFor="let user of task.assigned_users" class="contributor-container">
+                <span class="contributors-circle-big " style="margin-right: 32px; background-color: green">{{ user.username.charAt(0).toUpperCase() }}</span>
+                <span class="due-date-prio" style="margin-bottom: 0 !important ;">{{ user.username }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="showDelete" class="alert-delete-task-container" (click)="showDelete = false; $event.stopPropagation()">
+    <div class="alert-delete-task" (click)="$event.stopPropagation()">
+        <img class="close-overlay-btn-delete" src="assets/img/close.svg" (click)="showDelete = false; $event.stopPropagation()">
+        <h2>Are you sure to delete this task?</h2>
+        <div class="alert-delete-task-btn">
+            <button (click)="showDelete = false; $event.stopPropagation()">Dismiss</button>
+            <button class="alert-delete-delete-btn" (click)="deleteTask()">Delete</button>
+        </div>
+    </div>
+</div>

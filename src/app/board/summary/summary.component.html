@@ -1,1 +1,62 @@
-<p>summary works!</p>
+<div class="inner-content">
+    <div class="headline">
+        <h1 style="margin-right: 16px;">Summary</h1>
+        <img src="assets/img/devideLineSummary.svg">
+        <span>Everything in a nutshell!</span>
+    </div>
+    <div class="summary">
+        <div class="summary-information">
+            <div class="first-row">
+                <a [routerLink]="['/board', boardname, 'board']">
+                    <h2>{{ tasksNumber }}</h2>
+                    <span>Tasks in Board</span>
+                </a>
+                <a [routerLink]="['/board', boardname, 'board']">
+                    <h2>{{ tasksProgressNumber }}</h2>
+                    <span>Tasks in Progress</span>
+                </a>
+                <a [routerLink]="['/board', boardname, 'board']">
+                    <h2>{{ tasksFeedbackNumber }}</h2>
+                    <span>Awaiting Feedback</span>
+                </a>
+            </div>
+            <a [routerLink]="['/board', boardname, 'board']" class="second-row">
+                <div class="urgent-tasks">
+                    <img src="assets/img/urgentSymbol.svg">
+                    <div>
+                        <h2>{{ urgentTodoNumber }}</h2>
+                        <span>Urgent</span>
+                    </div>
+                </div>
+                <div class="upcoming-deadline">
+                    <span style="font-size: 18px; font-weight:700;"><strong>{{ upcomingDeadline }}</strong></span>
+                    <span style="font-size: 14px; margin-top: 6px;">Upcoming Deadline</span>
+                </div>
+            </a>
+            <div class="third-row">
+                <a [routerLink]="['/board', boardname, 'board']">
+                    <div class="elipse">
+                        <img src="assets/img/pencilToDo.svg">
+                    </div>
+                    <div class="content-div-row-3">
+                        <h2>{{ tasksTodoNumber }}</h2>
+                        <span>To-do</span>
+                    </div>
+                </a>
+                <a [routerLink]="['/board', boardname, 'board']">
+                    <div class="elipse">
+                        <img src="assets/img/doneSymbol.svg" class="done-symbol">
+                    </div>
+                    <div class="content-div-row-3">
+                        <h2>{{ tasksDoneNumber }}</h2>
+                        <span>Done</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="greeting">
+            <span style="margin: 0;">Hello</span>
+            <span class="greeting_name">{{ username }}</span>
+        </div>
+    </div>
+</div>
