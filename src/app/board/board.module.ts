@@ -17,6 +17,7 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { FormsModule } from '@angular/forms';
 import { TaskAddedSuccessPopupComponent } from './task-added-success-popup/task-added-success-popup.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { TaskAddedSuccessPopupComponent } from './task-added-success-popup/task-
   imports: [
     CommonModule,
     BoardRoutingModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ]
 })
 export class BoardModule { }

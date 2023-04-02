@@ -11,6 +11,10 @@
     position: relative;
 }
 
+.tasks-main{
+    min-height: 80%;
+}
+
 .inner-content {
     background-color: #F6F7F8;
     position: absolute;
@@ -236,7 +240,10 @@
     align-items: center;
     justify-content: space-between;
     font-size: 21px;
-    cursor: pointer;
+
+    span{
+        cursor: pointer;
+    }
 }
 
 .plus-icon {

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ManagePopupsService } from '../services/manage-popups.service';
 import { SharedDataService } from '../services/shared-data.service';
-
+import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
+import { LoadingService } from 'src/app/services/loading.service';
+import { GetDataService } from 'src/app/services/get-data.service';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -15,7 +17,7 @@ export class BoardComponent {
 
   searchInput: string = '';
 
-  constructor(private sharedData: SharedDataService, private managePopupsS: ManagePopupsService) { }
+  constructor(private sharedData: SharedDataService, private managePopupsS: ManagePopupsService, private loadingService: LoadingService, private dataService: GetDataService) { }
 
   ngOnInit() {
     this.getAllTasks();
@@ -56,6 +58,27 @@ export class BoardComponent {
           task.show = (this.searchInput === '') || (task.title.toLowerCase().includes(this.searchInput.toLowerCase()) || task.description.toLowerCase().includes(this.searchInput.toLowerCase()));
         });
       }
+    }
+  }
+
+  async drop(event: CdkDragDrop<any>){
+    const newStatus = event.container.id;
+    console.log(newStatus);
+    if(newStatus !== event.previousContainer.id){
+      this.loadingService.setLoading(true);
+      let task = event.item.data;
+      const body = {
+        "status": newStatus,
+        "id": task.id
+      }
+      await this.dataService.editTask(this.sharedData.boardname, body);
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+      this.loadingService.setLoading(false);
     }
   }
 }

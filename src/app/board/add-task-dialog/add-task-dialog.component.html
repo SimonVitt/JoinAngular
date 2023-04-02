@@ -43,7 +43,7 @@
                         </div>
                         <div (click)="selectedColorCategory('blue', $event.target)" style="background-color: blue;"></div>
                     </div>
-                    <span *ngIf="errorCreateCategory" style="color: red; font-size: 12px;">Please select a color and a name!</span>
+                    <span *ngIf="errorCreateCategory" style="color: red; font-size: 12px;">Please select a color and a name with atleast 4 letters!</span>
                 </div>
                 <span *ngIf="categoryError" class="errorInput">Please give a category!</span>
                 <span *ngIf="!categoryError" class="errorPlaceholder">Null</span>

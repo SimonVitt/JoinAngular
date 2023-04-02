@@ -11,6 +11,7 @@ import { SharedDataService } from '../services/shared-data.service';
 })
 export class AddTaskDialogComponent {
   @Input() status: string = 'todo';
+  previousColor: ElementRef | undefined;
   createCategoryName: string = '';
 
   categories: Array<any> = [];
@@ -61,6 +62,7 @@ export class AddTaskDialogComponent {
         "name": this.createCategoryName,
         "color": this.colorCreateCategory
       };
+      console.log(newCategory);
       this.categories.push(await this.dataService.createCategory(newCategory, this.sharedData.boardname));
       this.createCategoryName = '';
       this.colorCreateCategory = undefined;
@@ -115,6 +117,8 @@ export class AddTaskDialogComponent {
     let targetDiv = targetEvent as HTMLElement;
     const elementRef = new ElementRef(targetDiv);
     elementRef.nativeElement.classList.add('selected-color');
+    this.previousColor?.nativeElement.classList.remove('selected-color');
+    this.previousColor = elementRef;
   }
 
   getAssignedUsers() {

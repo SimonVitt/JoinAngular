@@ -42,10 +42,8 @@ export class EditTaskComponent {
   ngOnInit() {
     this.subToEditTask =  this.managePopups.editTaskBSubject.subscribe((task) => {
       this.task = Object.assign({}, task);
-      console.log(this.task, 'hallo')
       this.task.category = this.task.category.id;
       this.originalTask = task;
-      console.log(this.originalTask);
       this.task.assigned_users = [];
     });
     this.sharedData.categoriesBSubject.subscribe((data) => {
@@ -84,7 +82,6 @@ export class EditTaskComponent {
     if (this.checkFilledOut()) {
       const editedFields = this.setEditedFields();
       if (Object.keys(editedFields).length > 1) {
-        console.log(editedFields);
         await this.createTaskRequest(editedFields);
       }
       this.closeCardEdit();
@@ -151,7 +148,6 @@ export class EditTaskComponent {
     this.task.assigned_users = this.getAssignedUsers();
     if (!(this.task.assigned_users.length == this.originalTask.assigned_users.length && 
       this.task.assigned_users.every((id:number) => this.originalTask.assigned_users.some((user:any) => user.id === id)))) {
-        console.log('ahllo');
       editedFields.assigned_users = this.task.assigned_users;
     }
     if (this.task.category != this.originalTask.category.id) {
