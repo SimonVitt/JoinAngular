@@ -7,4 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class NavbarComponent {
   @Input() boardname!: string;
+
+  currentSection: string = 'summary';
+
+  changeSection(section: string){
+    this.currentSection = section;
+  }
 }

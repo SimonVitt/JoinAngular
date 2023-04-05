@@ -1,11 +1,6 @@
 .topper{
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 232px;
     background-color: white;
-    height: 89px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -58,16 +53,31 @@
 
 .logout-button div{
     background-color:#2A3647;
-    color: rgb(136, 136, 136);
+    color: white;
     width: 120px;
-    height: 42px;
+    height: 80px;
     border-radius: 16px 0px 16px 16px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .d-none{
     display: none;
+}
+
+@media(max-width: 1024px){
+
+    .hideMobile{
+        display: none;
+    }
+
+    .img-topper{
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 12px;
+    }
 }

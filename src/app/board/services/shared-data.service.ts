@@ -32,7 +32,7 @@ export class SharedDataService {
   }
 
   async setTasks(){
-    this.allTasks = await this.dataService.getTasks(this.boardname);
+    this.allTasks = await this.dataService.getTasks();
     this.allTasksBSubject.next(this.allTasks);
     this.todoTasks = this.allTasks.filter((task: any) => {
       return task.status === 'todo';
@@ -53,12 +53,12 @@ export class SharedDataService {
   }
 
   async setCategories(){
-    this.categories = await this.dataService.getCategories(this.boardname);
+    this.categories = await this.dataService.getCategories();
     this.categoriesBSubject.next(this.categories);
   }
 
   async setUsers(){
-    this.users = await this.dataService.getUsers(this.boardname) as Array<any>;
+    this.users = await this.dataService.getUsers() as Array<any>;
     this.usersBSubject.next(this.users);
   }
 

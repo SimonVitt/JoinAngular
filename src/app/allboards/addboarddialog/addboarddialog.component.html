@@ -17,6 +17,6 @@
                 </div>
             </div>
         </div>
-        <button [ngClass]="{'disabledBtn': boardname.length < 5 || assignedUsers.length == 0}" [disabled]="boardname.length < 5 || assignedUsers.length == 0" (click)="createBoard()">Create Board</button>
+        <button [ngClass]="{'disabledBtn': boardname.length < 3 || assignedUsers.length == 0}" [disabled]="boardname.length < 3 || assignedUsers.length == 0" (click)="createBoard()">Create Board</button>
     </div>
 </div>

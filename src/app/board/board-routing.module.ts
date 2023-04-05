@@ -14,8 +14,8 @@ const routes: Routes = [
   { path: 'board', component: BoardComponent, pathMatch: 'full' },
   { path: 'addtask', component: AddTaskComponent, pathMatch: 'full' },
   { path: 'contacts', component: ContactsComponent, pathMatch: 'full' },
-  { path: 'help', component: LegalNoticeComponent, pathMatch: 'full' },
-  { path: 'legalnotice', component: HelpComponent, pathMatch: 'full' },
+  { path: 'help', component: HelpComponent, pathMatch: 'full' },
+  { path: 'legalnotice', component: LegalNoticeComponent, pathMatch: 'full' },
   { path: '', redirectTo: 'summary', pathMatch: 'full' },
   { path: '**', redirectTo: 'summary', pathMatch: 'full' }
 ];

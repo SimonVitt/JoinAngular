@@ -36,7 +36,7 @@ export class TaskDetailComponent {
 
   async deleteTask(){
     this.loadingService.setLoading(true);
-    await this.dataService.deleteTask(this.sharedData.boardname, this.task.id);
+    await this.dataService.deleteTask(this.task.id);
     this.managePopups.triggerShowTaskDetail(false, null);
     await this.sharedData.setTasks();
     this.loadingService.setLoading(false);

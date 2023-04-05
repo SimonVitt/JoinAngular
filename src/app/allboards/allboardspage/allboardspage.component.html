@@ -8,7 +8,7 @@
         <span>Create a new Board</span>
     </div>
     <div *ngIf="boards.length > 0" class="boards">
-        <div *ngFor="let board of boards" class="board" [routerLink]="[ '/board', board.name]">
+        <div style="cursor: pointer;" *ngFor="let board of boards" class="board" (click)="openBoard(board.id, board.name)" [routerLink]="[ '/board', board.name]">
             <span>{{ board.name }}</span>
         </div>
     </div>

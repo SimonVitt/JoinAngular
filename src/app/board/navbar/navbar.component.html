@@ -1,39 +1,39 @@
 <div class="nav-bar">
-    <img src="assets/img/logo_lefter.svg">
-    <a [routerLink]="['/board', boardname, 'summary']">
-        <div class="content-section" style="margin-top: 100px;">
+    <img src="assets/img/logo_lefter.svg" class="joinimg">
+    <a class="top-a" [routerLink]="['/board', boardname, 'summary']" (click)="currentSection = 'summary'">
+        <div class="content-section"  [class.active-content-section]="currentSection === 'summary'">
             <div>
                 <img src="assets/img/icon-summary.svg">
             </div>
             <span>Summary</span>
         </div>
     </a>
-    <a [routerLink]="['/board', boardname, 'board']">
-        <div class="content-section" >
+    <a [routerLink]="['/board', boardname, 'board']" (click)="currentSection = 'board'">
+        <div class="content-section"  [class.active-content-section]="currentSection === 'board'">
             <div>
                 <img src="assets/img/icon-board.svg">
             </div>
             <span>Board</span>
         </div>
     </a>
-    <a [routerLink]="['/board', boardname, 'addtask']">
-        <div class="content-section">
+    <a [routerLink]="['/board', boardname, 'addtask']" (click)="currentSection = 'addtask'">
+        <div class="content-section"  [class.active-content-section]="currentSection === 'addtask'">
             <div>
                 <img src="assets/img/icon-addtask.svg">
             </div>
             <span>Add Task</span>
         </div>
     </a>
-    <a [routerLink]="['/board', boardname, 'contacts']">
-        <div class="content-section">
+    <a [routerLink]="['/board', boardname, 'contacts']" (click)="currentSection = 'contacts'">
+        <div class="content-section"  [class.active-content-section]="currentSection === 'contacts'">
             <div>
                 <img src="assets/img/icon-contacts.svg">
             </div>
             <span>Contacts</span>
         </div>
     </a>
-    <a [routerLink]="['/board', boardname, 'legalnotice']">
-        <div class="content-section" style="position: absolute; bottom: 24px">
+    <a class="legalnotice" [routerLink]="['/board', boardname, 'legalnotice']" (click)="currentSection = 'legalnotice'">
+        <div class="content-section legalnotice" [class.active-content-section]="currentSection === 'legalnotice'">
             <div>
                 <img src="assets/img/icon-info.svg">
             </div>

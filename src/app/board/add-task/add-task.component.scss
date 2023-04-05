@@ -33,27 +33,104 @@
     border: 1px solid #ffffff;
   }
 
-.content-mobile {
-    display: none;
+  .content-addtask {
+    background-color: #F6F7F8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px;
+    border-radius: 40px;
+    position: relative;
 }
 
-.inner-content h1 {
+.errorInput{
+    color: red;
+    justify-self: left;
+    font-size: 11px;
+    margin: 0 !important;
+    padding: 0;
+    text-align: left;
+    padding-left: 11px;
+}
+
+.errorPlaceholder{
+    color: transparent;
+    justify-self: left;
+    font-size: 11px;
+    margin: 0 !important;
+    padding: 0;
+    text-align: left;
+    padding-left: 11px;
+}
+
+.flyIn {
+    animation: flyIn;
+    animation-duration: 0.8s;
+}
+
+.addCategory{
+    position: absolute;
+    left: 17px;
+    bottom: 20px;
+    color: #29ABE2;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@keyframes flyIn {
+    0% {
+        right: -1500px
+    }
+
+    100% {
+        right: 0px;
+    }
+}
+
+.flyOut {
+    animation: flyOut;
+    animation-duration: 1.2s;
+}
+
+@keyframes flyOut {
+    0% {
+        right: 0
+    }
+
+    100% {
+        right: -2500px;
+    }
+}
+
+.close-btn {
+    position: absolute;
+    right: 32px;
+    top: 36px;
+}
+
+.close-btn:hover {
+    cursor: pointer;
+}
+
+.addtask-h1 {
     font-size: 52px;
     margin: 0;
     margin-bottom: 32px;
     color: #2A3647;
+    font-weight: bold;
 }
 
 .formContentWithButton {
     display: flex;
+    box-sizing: unset;
 }
 
 .divContentAddtask {
     display: flex;
     flex-direction: column;
     width: 50%;
+    height: 460px;
     padding: 16px 24px;
-    height: 380px;
 }
 
 input {
@@ -64,6 +141,7 @@ input {
     border: 1px solid rgb(214, 214, 214);
     margin-left: 8px;
     height: 32px;
+    box-sizing: border-box;
 }
 
 input:focus {
@@ -73,7 +151,7 @@ input:focus {
 textarea {
     font-family: Inter;
     font-size: 16px;
-    padding: 4px;
+    padding: 8px;
     border-radius: 8px;
     border: 1px solid rgb(214, 214, 214);
     margin-left: 8px;
@@ -83,6 +161,18 @@ textarea {
 
 textarea:focus {
     outline: none;
+}
+
+.urgent{
+    background-color: red !important;
+}
+
+.medium{
+    background-color: orange !important ;
+}
+
+.low{
+    background-color: green !important;
 }
 
 select {
@@ -96,17 +186,16 @@ select {
     background-color: white;
 }
 
-.urgent{
-    background-color: red !important;
+.selected-category-color{
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 100%;
+    position: absolute;
+    top: 64%;
+    left: 80%;
 }
 
-.medium{
-    background-color: orange !important;
-}
-
-.low{
-    background-color: green !important;
-}
 
 select:focus {
     outline: none;
@@ -116,7 +205,12 @@ select:hover {
     cursor: pointer;
 }
 
+option {
+    color: white;
+}
+
 .divContentAddtask span {
+    box-sizing: unset;
     margin-top: 24px;
     margin-bottom: 6px;
 }
@@ -148,6 +242,12 @@ select:hover {
     justify-content: center;
 }
 
+.choosePriority div:hover {
+    cursor: pointer;
+    transition: 175ms ease-in-out;
+    transform: scale(1.1);
+    box-shadow: 1px 1px 1px 1px rgb(194, 194, 194);
+}
 
 .choosePriorityPicked {
     transform: scale(1.1);
@@ -158,14 +258,6 @@ select:hover {
 
 .choosePriorityPicked img {
     filter: brightness(0) invert(1);
-}
-
-
-.choosePriority div:hover {
-    cursor: pointer;
-    transition: 175ms ease-in-out;
-    transform: scale(1.1);
-    box-shadow: 1px 1px 1px 1px rgb(194, 194, 194);
 }
 
 .div-button {
@@ -223,33 +315,55 @@ select:hover {
     cursor: pointer;
 }
 
-.create-task-btn-mobile {
-    display: none;
+.dialog-taskadded {
+    z-index: 999;
+    width: 280px;
+    display: flex;
+    background-color: #2A3647;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    padding: 16px;
+    position: fixed;
+    top: 78%;
+    left: calc(50% + 116px);
+    transform: translateX(-50%);
+}
+
+.dialog-taskadded img {
+    height: 24px;
+    object-fit: contain;
+    margin-left: 32px;
 }
 
 .d-none {
     display: none;
 }
 
-.new-category{
+.background {
+    display: none;
+}
+
+.new-category {
     display: flex;
     flex-direction: column;
     margin-left: 8px;
 }
 
-.new-category-name{
+.new-category-name {
     display: flex;
     background-color: white;
     border-radius: 8px;
     border: 1px solid rgb(221, 221, 221);
 }
 
-.new-category-name input{
+.new-category-name input {
     width: 80%;
     border: 0;
 }
 
-.new-category-name button{
+.new-category-name button {
     width: 10%;
     background-color: white;
     border: 0;
@@ -258,49 +372,35 @@ select:hover {
     align-items: center;
 }
 
-.selected-category-color{
-    width: 24px;
-    height: 24px;
-    background-color: white;
-    border-radius: 100%;
-    position: absolute;
-    top: 64%;
-    left: 80%;
-}
-
-.new-category-name button:hover{
+.new-category-name button:hover {
     cursor: pointer;
 }
 
 
-.new-category-name img{
+.new-category-name img {
     height: 12px;
     object-fit: contain;
 }
 
-option{
-    color: white;
-}
-
-.select-color-category{
+.select-color-category {
     margin-top: 8px;
     display: flex;
     justify-content: space-evenly;
 }
 
-.select-color-category div{
+.select-color-category div {
     width: 18px;
     height: 18px;
     border: 1px solid white;
     border-radius: 100%;
 }
 
-.select-color-category div:hover{
+.select-color-category div:hover {
     cursor: pointer;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
-.selected-color{
+.selected-color {
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
@@ -345,7 +445,38 @@ option{
     top: 21%;
 }
 
-  /* ===== Scrollbar CSS ===== */
+.dropdown-check-list-contacts ul.items {
+    padding: 2px;
+    margin: 0;
+    max-height: 104px;
+    overflow-y: auto;
+    margin-left: 8px;
+    border-radius: 12px;
+    background-color: white;
+}
+
+.dropdown-check-list-contacts ul.items li {
+    list-style: none;
+    color: black;
+    padding: 4px;
+    border-radius: 8px;
+    margin: 4px 0px;
+    display: flex;
+    align-items: center;
+    height: 24px;
+    font-size: 18px;
+}
+
+.dropdown-check-list-contacts ul.items li:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+}
+
+.dropdown-check-list-contacts.visible .items {
+    display: block;
+}
+
+/* ===== Scrollbar CSS ===== */
   /* Firefox */
   .items {
     scrollbar-width: auto;
@@ -367,38 +498,7 @@ option{
     border: 1px solid #ffffff;
   }
 
-.dropdown-check-list-contacts ul.items {
-    padding: 2px;
-    display: none;
-    margin: 0;
-    max-height: 104px;
-    overflow-y: auto;
-    margin-left: 8px;
-    border-radius: 12px;
-}
-
-.dropdown-check-list-contacts ul.items li {
-    list-style: none;
-    color: white;
-    padding: 4px;
-    border-radius: 8px;
-    margin: 4px 0px;
-    display: flex;
-    align-items: center;
-    height: 24px;
-    font-size: 18px;
-}
-
-.dropdown-check-list-contacts ul.items li:hover {
-    cursor: pointer;
-    filter: brightness(0.9);
-}
-
-.dropdown-check-list-contacts.visible .items {
-    display: block;
-}
-
-.contributors-circle-addtask {
+  .contributors-circle-addtask {
     box-sizing: border-box !important;
     display: flex;
     flex-direction: column;
@@ -423,57 +523,64 @@ option{
     margin-left: 6px;
 }
 
-@media(max-width: 1100px){
+  @media(max-width: 1100px){
     .choosePriority div {
         width: 96px;
     }
 }
 
-@media(max-width: 1024px) {
-    .content-destop {
-        display: none;
+
+@media(max-width:1024px) {
+    
+    .inner-content{
+        width: unset;
+        left: 0;
+        padding-bottom: 90px;
     }
 
-    .content-mobile {
-        position: relative;
-        top: 79px;
-        height: calc(100vh - 159px);
-        display: unset;
-        padding: 16px 10%;
-        display: flex;
-        flex-direction: column;
+    .background {
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #F6F7F8;
+    }
+
+    .content-background {
+        box-sizing: unset;
+        z-index: 10;
+        top: 82px;
+    }
+
+    .content-addtask {
+        width: 100%;
+        height: 100%;
+        padding-top: 32px;
+        border-radius: 0;
         background-color: #F6F7F8;
         box-sizing: border-box;
+        justify-content: unset;
         overflow-y: scroll;
-        padding-bottom: 80px;
+        overflow-x: hidden;
+
+        animation: none;
     }
 
-    h1 {
-        font-size: 42px;
-    }
-
-    .form-mobile {
-        display: flex;
+    .formContentWithButton {
         flex-direction: column;
+        align-items: center;
     }
 
-    .form-mobile span {
-        margin-top: 24px;
-        margin-bottom: 6px;
+    .clear-btn {
+        display: none !important;
     }
 
-    .choosePriority div {
-        min-width: 96px;
-        width: 20%;
+    .dialog-taskadded {
+        left: 50%;
     }
 
-
-
-    .choosePriority span {
-        margin: 0;
-    }
-
-    .create-task-btn-mobile {
+    .create-task-btn {
         z-index: 10;
         position: fixed;
         top: 16px;
@@ -484,27 +591,54 @@ option{
         color: white;
         font-weight: 600;
         font-size: 16px;
-        height: 48px;
+        height: 48px !important;
         display: flex;
         align-items: center;
         padding: 0px 8px;
     }
 
-    .create-task-btn-mobile img {
-        height: 10px;
-        object-fit: contain;
-        margin-left: 10px;
+    .divContentAddtask {
+        width: 100%;
+        height: unset;
+        box-sizing: unset;
     }
 
-    .create-task-btn-mobile:hover {
-        background-color: #29ABE2;
-        cursor: pointer;
+    .choosePriority {
+        justify-content: space-between;
+    }
+
+    .choosePriority div {
+        min-width: 88px;
+        width: 20%;
+    }
+
+    .div-button {
+        margin: 0;
+        width: 200px;
+        height: 77px;
+        background-color: white;
+        z-index: 10;
+        position: fixed;
+        top: 2px;
+        right: 2px;
+        border-radius: 8px;
     }
 }
 
-@media(max-width: 500px) {
-    .content-mobile {
-        padding: 16px 2%;
-        padding-bottom: 80px;
+@media(max-width:700px) {
+    .divContentAddtask {
+        width: 100%;
+    }
+
+    .inner-content{
+        padding: 48px 24px;
+    }
+
+    .content-addtask {
+        padding: 28px 2%;
+    }
+
+    .addtask-h1 {
+        font-size: 42px;
     }
 }

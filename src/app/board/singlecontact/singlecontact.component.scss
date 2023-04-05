@@ -191,15 +191,14 @@ h3 {
 /* Right side of Page  */
 
 .complete-contact {
-    width: 65%;
     background-color: rgb(246, 247, 248);
     display: flex;
     justify-content: center;
     position: relative;
+    margin-left: 40px;
 }
 
 .this-contact {
-    width: 90%;
     margin-top: 60px;
     overflow-y: auto;
 }
@@ -406,7 +405,6 @@ margin-top: 30px;
 
 .new-contact-button button:hover {
     background-color: rgb(41, 171, 226);
-    cursor: pointer;
 }
 
 .mobile-edit-button {
@@ -665,17 +663,16 @@ margin-top: 30px;
 }
 
 @media (max-width: 1024px) {
-
-    .marginbottom{
-        margin-bottom: 80px;
-    }
-
     .overlay {
         background-color: rgba(0, 0, 0, 0.5);
     }
 
     .arrow-back {
-        right: 66px;
+        right: 20px;
+    }
+
+    .complete-contact{
+        margin-left: 0;
     }
 
     .overlay-complete-contact {
@@ -693,9 +690,10 @@ margin-top: 30px;
         left: 0;
         width: 100%;
         top: 0;
-        padding-top: 85px;
+        margin-top: 85px;
+        margin-bottom: 90px;
+        padding-bottom: 85px;
         overflow-y: hidden;
-        background-color: white;
     }
 
     .destop-template-contacts{
@@ -722,6 +720,10 @@ margin-top: 30px;
         height: 25px;
     }
 
+    .this-contact{
+        width: 90%;
+    }
+
     .button-new-contact button {
         background-color: rgb(42, 54, 71);
         color: white;
@@ -735,10 +737,11 @@ margin-top: 30px;
 
     .all-contacts {
         width: 100%;
+        margin-bottom: 80px;
     }
 
     .all-contacts-div {
-        height: unset;
+        height: 80%;
     }
 
     .alphabet-box {
@@ -806,15 +809,6 @@ margin-top: 30px;
 
     .new-contact-button {
         display: none;
-    }
-
-    .showMobile{
-        display: unset !important;
-        position: absolute;
-        bottom: 100px;
-        right: 12px;
-        margin: 0;
-        width: unset;
     }
 
 } 
@@ -962,7 +956,7 @@ margin-top: 30px;
         }
 
         .arrow-back {
-            right: 30px;
+            right: 20px;
         }
 
         .mobile-edit-button{

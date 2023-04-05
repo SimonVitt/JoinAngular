@@ -495,105 +495,36 @@ option {
     }
 }
 
+@media(max-width: 1024px){
 
-@media(max-width:1024px) {
-    .background {
-        height: 100vh;
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #F6F7F8;
+    .content-addtask{
+        max-height: 90vh;
+        overflow: auto;
     }
 
-    .content-background {
-        box-sizing: unset;
-        z-index: 10;
-        top: 82px;
-    }
-
-    .content-addtask {
-        width: 100%;
-        height: 100%;
-        padding-top: 32px;
-        border-radius: 0;
-        background-color: #F6F7F8;
-        box-sizing: border-box;
-        justify-content: unset;
-        overflow-y: scroll;
-        overflow-x: hidden;
-
-        animation: none;
-    }
-
-    .formContentWithButton {
+    .formContentWithButton{
         flex-direction: column;
-        align-items: center;
     }
 
-    .clear-btn {
-        display: none !important;
-    }
-
-    .dialog-taskadded {
-        left: 50%;
-    }
-
-    .create-task-btn {
-        z-index: 10;
-        position: fixed;
-        top: 16px;
-        right: 18px;
-        background-color: #2A3647;
-        border: 0;
-        border-radius: 10px;
-        color: white;
-        font-weight: 600;
-        font-size: 16px;
-        height: 48px !important;
-        display: flex;
-        align-items: center;
-        padding: 0px 8px;
-    }
-
-    .divContentAddtask {
-        width: 66%;
+    .divContentAddtask{
+        width: unset;
         height: unset;
-        box-sizing: unset;
+        padding: 0 24px;
     }
 
-    .choosePriority {
-        justify-content: space-between;
-    }
-
-    .choosePriority div {
-        min-width: 88px;
-        width: 20%;
-    }
-
-    .div-button {
-        margin: 0;
-        width: 200px;
-        height: 77px;
-        background-color: #F6F7F8;
-        z-index: 10;
-        position: fixed;
-        top: 2px;
-        right: 2px;
-        border-radius: 8px;
+    .div-button{
+        margin-top: 4px;
     }
 }
 
-@media(max-width:700px) {
-    .divContentAddtask {
-        width: 100%;
+@media(max-width: 500px){
+    .content-addtask{
+        padding: 28px 0px;
     }
+}
 
-    .content-addtask {
-        padding: 28px 2%;
-    }
-
-    .addtask-h1 {
-        font-size: 42px;
+@media(max-width: 390px){
+    .divContentAddtask{
+        padding: 0 6px;
     }
 }

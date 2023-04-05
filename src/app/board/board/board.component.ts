@@ -71,7 +71,7 @@ export class BoardComponent {
         "status": newStatus,
         "id": task.id
       }
-      await this.dataService.editTask(this.sharedData.boardname, body);
+      await this.dataService.editTask(body);
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,

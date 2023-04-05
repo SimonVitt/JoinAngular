@@ -1,0 +1,35 @@
+<div class="complete-contact">
+    <div class="this-contact">
+        <div class="head">
+            <div class="arrow-back" (click)="hideSingleContact()"><img
+                    src="assets/img/arrow_left_black.png"></div>
+            <div class="headline-contacts">
+                <h1 style="margin: 0;">Contacts</h1>
+            </div>
+            <div class="horizontal-line"></div>
+            <div class="motivation"><span>Better with a team</span></div>
+            <div class="vertical-line"></div>
+        </div>
+
+        <div class="name">
+            <div class="initials-big">
+                <div>{{ user.username.charAt(0).toUpperCase() }}</div>
+            </div>
+            <div class="name-addTask">
+                <div class="name-big">
+                    <h2 style="margin: 0;">{{ user.username }}</h2>
+                </div>
+                <div class="addTask-button" (click)="showAddTask()">+ Add Task</div>
+            </div>
+        </div>
+
+        <div class="email-div">
+            <div class="contact-variant">Email</div>
+            <div class="email-adress" style="cursor: unset;">
+                <a href="mailto:{{user.email}}" style="text-decoration: none;">{{ user.email }}</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

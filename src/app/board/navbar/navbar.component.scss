@@ -1,14 +1,14 @@
 .nav-bar{
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: 100%;
     background-color: #2A3647;
-    width: 232px;
-    height: 100vh;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.top-a{
+    margin-top: 100px;
 }
 
 .nav-bar a{
@@ -56,3 +56,57 @@
     background-color: #091931;
 }
 
+.legalnotice{
+    position: absolute; 
+    bottom: 24px
+}
+
+@media(max-width: 1024px){
+    .nav-bar{
+        width: 100%;
+        flex-direction: unset;
+        justify-content: space-evenly;
+    }
+
+    .content-section{
+        flex-direction: column;
+        justify-content: center;
+        width: unset;
+        padding: unset;
+
+        div{
+            margin-right: 0;
+            height: fit-content;
+        }
+
+        span{
+            margin-top: 8px;
+        }
+    }
+
+    .joinimg{
+        display: none;
+    }
+
+    .top-a{
+        margin-top: 0;
+    }
+
+    .legalnotice{
+        display: none;
+    }
+
+    a{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        div{
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+
+}

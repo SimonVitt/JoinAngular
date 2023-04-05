@@ -1,69 +1,91 @@
 <div class="inner-content" id="inner-content">
-    <h1>Add task</h1>
-    <form onsubmit="checkTaskToCreate(); return false">
-        <div class="formContentWithButton">
-            <div class="divContentAddtask" style="border-right: 1px solid rgb(186, 186, 186); padding-left: 0;">
-                <span style="margin-top: 0;">Title</span>
-                <input required placeholder="Enter a title" id="input-title">
-                <span>Description</span>
-                <textarea required placeholder="Enter a description" id="input-description"></textarea>
-                <div style="position: relative; display: flex; flex-direction: column;">
-                    <span>Category</span>
-                    <div class="selected-category-color" id="selected-category-colorDiv"></div>
-                    <select required id="select-category" onchange="showAddCategory()">
-                    </select>
-                </div>
-                <div class="new-category d-none" id="create-category">
+    <h1 class="addtask-h1">Add task</h1>
+    <div class="formContentWithButton">
+        <div class="divContentAddtask"
+            style="@media(min-width:1024px){border-right: 1px solid rgb(186, 186, 186); padding-left: 0;}">
+            <span style="margin-top: 0;">Title</span>
+            <input placeholder="Enter a title" [(ngModel)]="title">
+            <span *ngIf="titleError" class="errorInput">Please give a title!</span>
+            <span *ngIf="!titleError" class="errorPlaceholder">Null</span>
+            <span>Description</span>
+            <textarea placeholder="Enter a description" [(ngModel)]="description"></textarea>
+            <span *ngIf="descriptionError" class="errorInput">Please give a description!</span>
+            <span *ngIf="!descriptionError" class="errorPlaceholder">Null</span>
+            <div style="position: relative; display: flex; flex-direction: column; padding-bottom: 50px">
+                <span>Category</span>
+                <select *ngIf="!createCategoryB" [(ngModel)]="category">
+                    <option disabled selected>Select a Category</option>
+                    <option *ngFor="let category of categories" [style.background-color]="category.color"
+                        value="category" [value]="category.id">{{ category.name }}</option>
+                </select>
+                <span class="addCategory" *ngIf="!createCategoryB" (click)="createCategoryB = true">Add category</span>
+
+                <div class="new-category" *ngIf="createCategoryB">
                     <div class="new-category-name">
-                        <input id="new-category" maxlength="10" placeholder="Name">
-                        <button onclick="dismissCategory()" type="button"><img style="height: 18px;"
+                        <input maxlength="10" [(ngModel)]="createCategoryName" placeholder="Name">
+                        <button (click)="dismissCategory()" type="button"><img style="height: 18px;"
                                 src="assets/img/close-button-addtask.svg"></button>
-                        <button onclick="checkNewCategory()" type="button"><img
+                        <button (click)="createCategory()" type="button"><img
                                 src="assets/img/check-addtask.svg"></button>
                     </div>
                     <div class="select-color-category">
-                        <div onclick="selectColor(1)" id="color1" style="background-color: #FC71FF;"></div>
-                        <div onclick="selectColor(2)" id="color2" style="background-color: #FF7A00;"></div>
-                        <div onclick="selectColor(3)" id="color3" style="background-color: #1FD7C1;"></div>
-                        <div onclick="selectColor(4)" id="color4" style="background-color: #2AD300;"></div>
-                        <div onclick="selectColor(5)" id="color5" style="background-color: red;"></div>
-                        <div onclick="selectColor(6)" id="color6" style="background-color: #8AA4FF;"></div>
-                        <div onclick="selectColor(7)" id="color7" style="background-color: blue;"></div>
+                        <div (click)="selectedColorCategory('#FC71FF', $event.target)" style="background-color: #FC71FF;">
+                        </div>
+                        <div (click)="selectedColorCategory('#FF7A00', $event.target)" style="background-color: #FF7A00;">
+                        </div>
+                        <div (click)="selectedColorCategory('#1FD7C1', $event.target)" style="background-color: #1FD7C1;">
+                        </div>
+                        <div (click)="selectedColorCategory('#2AD300', $event.target)" style="background-color: #2AD300;">
+                        </div>
+                        <div (click)="selectedColorCategory('red', $event.target)" style="background-color: red;"></div>
+                        <div (click)="selectedColorCategory('#8AA4FF', $event.target)" style="background-color: #8AA4FF;">
+                        </div>
+                        <div (click)="selectedColorCategory('blue', $event.target)" style="background-color: blue;"></div>
                     </div>
+                    <span *ngIf="errorCreateCategory" style="color: red; font-size: 12px;">Please select a color and a name with atleast 4 letters!</span>
                 </div>
-            </div>
-            <div class="divContentAddtask" style="padding-right: 0;">
-                <span style="margin-top: 0;">Due date</span>
-                <input required type="date" id="input-date">
-                <span>Prio</span>
-                <div class="choosePriority">
-                    <div id="urgent-btn" onclick="clickPriorityButton('urgent')">
-                        <span>Urgent</span>
-                        <img src="assets/img/addTaskUrgentSymbol.svg">
-                    </div>
-                    <div id="medium-btn" onclick="clickPriorityButton('medium')">
-                        <span>Medium</span>
-                        <img src="assets/img/addTaskMediumSymbol.svg">
-                    </div>
-                    <div id="low-btn" onclick="clickPriorityButton('low')">
-                        <span>Low</span>
-                        <img src="assets/img/addTaskLowSymbol.svg">
-                    </div>
-                </div>
-                <span>Assigned to</span>
-                <div id="assign-to-list" class="dropdown-check-list-contacts">
-                    <span class="anchor">Select Contacts</span>
-                    <ul class="items" id="contacts-to-assign">
-                    </ul>
-                </div>
-                <div id="assignedContactsDiv" class="assignedContactsDiv"></div>
+                <span *ngIf="categoryError" class="errorInput">Please give a category!</span>
+                <span *ngIf="!categoryError" class="errorPlaceholder">Null</span>
             </div>
         </div>
-        <div class="div-button">
-            <button class="clear-btn" type="button" onclick="clearTask()">Clear<img
-                    src="assets/img/clearTaskImg.svg"></button>
-            <button type="submit" class="create-task-btn">Create Task<img
-                    src="assets/img/createTaskImg.svg"></button>
+        <div class="divContentAddtask" style="@media(min-width:1024px){padding-right: 0;}">
+            <span style="margin-top: 0;">Due date</span>
+            <input type="date" [(ngModel)]="dueDate">
+            <span *ngIf="dateError" class="errorInput">Please give a due date!</span>
+            <span *ngIf="!dateError" class="errorPlaceholder">Null</span>
+            <span>Prio</span>
+            <div class="choosePriority">
+                <div (click)="selectedPriority = 'urgent'"
+                    [ngClass]="{'choosePriorityPicked urgent': selectedPriority == 'urgent'}">
+                    <span>Urgent</span>
+                    <img src="assets/img/addTaskUrgentSymbol.svg">
+                </div>
+                <div (click)="selectedPriority = 'medium'"
+                    [ngClass]="{'choosePriorityPicked medium': selectedPriority == 'medium'}">
+                    <span>Medium</span>
+                    <img src="assets/img/addTaskMediumSymbol.svg">
+                </div>
+                <div (click)="selectedPriority = 'low'"
+                    [ngClass]="{'choosePriorityPicked low': selectedPriority == 'low'}">
+                    <span>Low</span>
+                    <img src="assets/img/addTaskLowSymbol.svg">
+                </div>
+            </div>
+            <span *ngIf="prioError" class="errorInput">Please give a priority!</span>
+            <span *ngIf="!prioError" class="errorPlaceholder">Null</span>
+            <span>Assigned to</span>
+            <div class="dropdown-check-list-contacts" tabindex="100">
+                <span class="anchor" (click)="showUsers = !showUsers">Select Contacts</span>
+                <ul class="items" *ngIf="!resetAssigned" [ngClass]="{'d-none': !showUsers}">
+                    <li *ngFor="let user of users" class="input-contact-listitem" (mouseup)="inputCheckbox.checked = !inputCheckbox.checked; checkUser(user.id)"><input #inputCheckbox (mouseup)="inputCheckbox.checked = !inputCheckbox.checked; checkUser(user.id);" class="input-contact" type="checkbox" style="margin-right: 42px"/>{{ user.username }}</li>
+                </ul>
+            </div>
+            <div class="assignedContactsDiv"></div>
         </div>
-    </form>
+    </div>
+    <div class="div-button">
+        <button class="clear-btn" type="button" (click)="clearTask()">Clear<img
+                src="assets/img/clearTaskImg.svg"></button>
+        <button (click)="createTask()" class="create-task-btn">Create Task<img src="assets/img/createTaskImg.svg"></button>
+    </div>
 </div>

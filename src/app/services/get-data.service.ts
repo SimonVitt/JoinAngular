@@ -17,28 +17,28 @@ export class GetDataService {
     return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/alluser`));
   }
 
-  getCategories(boardname:string){
-    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/${boardname}/categories`));
+  getCategories(){
+    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/${this.getId()}/categories`));
   }
 
-  getTasks(boardname:string){
-    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/${boardname}/tasks`));
+  getTasks(){
+    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/${this.getId()}/tasks`));
   }
 
-  getUsers(boardname:string){
-    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/${boardname}/users`));
+  getUsers(){
+    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/${this.getId()}/users`));
   }
 
   createBoard(body: any){
     return lastValueFrom(this.http.post(`http://127.0.0.1:8000/api/createboard/`, body));
   }
 
-  createTask(body: any, boardname:string){
-    return lastValueFrom(this.http.post(`http://127.0.0.1:8000/api/${boardname}/tasks/`, body));
+  createTask(body: any){
+    return lastValueFrom(this.http.post(`http://127.0.0.1:8000/api/${this.getId()}/tasks/`, body));
   }
 
-  createCategory(body:any, boardname:string){
-    return lastValueFrom(this.http.post(`http://127.0.0.1:8000/api/${boardname}/categories/`, body))
+  createCategory(body:any){
+    return lastValueFrom(this.http.post(`http://127.0.0.1:8000/api/${this.getId()}/categories/`, body))
   }
 
   sendEmailReset(body: any){
@@ -49,13 +49,21 @@ export class GetDataService {
     return lastValueFrom(this.http.patch(`http://127.0.0.1:8000/members/changepassword/`, body));
   }
 
-  deleteTask(boardname: string, id: number){
-    return lastValueFrom(this.http.delete(`http://127.0.0.1:8000/api/${boardname}/tasks/${id}/`));
+  deleteTask(id: number){
+    return lastValueFrom(this.http.delete(`http://127.0.0.1:8000/api/${this.getId()}/tasks/${id}/`));
   }
 
-  editTask(boardname: string, body: any){
+  editTask(body: any){
     const id = body.id;
     delete body.id;
-    return lastValueFrom(this.http.patch(`http://127.0.0.1:8000/api/${boardname}/tasks/${id}/`, body));
+    return lastValueFrom(this.http.patch(`http://127.0.0.1:8000/api/${this.getId()}/tasks/${id}/`, body));
+  }
+
+  editBoard(body: any){
+    return lastValueFrom(this.http.patch(`http://127.0.0.1:8000/api/createboard/${this.getId()}/`, body));
+  }
+
+  getId(){
+    return sessionStorage.getItem('board');
   }
 }

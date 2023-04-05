@@ -18,6 +18,8 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
 import { FormsModule } from '@angular/forms';
 import { TaskAddedSuccessPopupComponent } from './task-added-success-popup/task-added-success-popup.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { SinglecontactComponent } from './singlecontact/singlecontact.component';
+import { AddContactComponent } from './add-contact/add-contact.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     BoardTaskComponent,
     TaskDetailComponent,
     EditTaskComponent,
-    TaskAddedSuccessPopupComponent
+    TaskAddedSuccessPopupComponent,
+    SinglecontactComponent,
+    AddContactComponent
   ],
   imports: [
     CommonModule,

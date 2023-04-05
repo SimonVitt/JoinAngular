@@ -18,6 +18,7 @@ export class ContainerboardComponent {
   showAddTaskDialog: boolean = false;
   taskadded: boolean = false;
   showEditTask: boolean = false;
+  addUser: boolean = false;
 
   constructor(private route: ActivatedRoute, private sharedData: SharedDataService, private managePopupsS: ManagePopupsService){
     this.boardname = this.route.snapshot.paramMap.get('boardname')!;
@@ -34,6 +35,9 @@ export class ContainerboardComponent {
     this.managePopupsS.editTaskSubject.subscribe((show) => {
       this.showEditTask = show;
     });
+    this.managePopupsS.addContactSubject.subscribe((show) => {
+      this.addUser = show;
+    })
   }
 
   async ngOnInit(){
@@ -47,6 +51,7 @@ export class ContainerboardComponent {
   closeCard(){
     this.showAddTaskDialog = false;
     this.showTaskDetail = false;
+    this.addUser = false;
   }
 
   closeCardEdit(){

@@ -67,7 +67,7 @@ export class EditTaskComponent {
         "name": this.createCategoryName,
         "color": this.colorCreateCategory
       };
-      this.categories.push(await this.dataService.createCategory(newCategory, this.sharedData.boardname));
+      this.categories.push(await this.dataService.createCategory(newCategory));
       this.createCategoryName = '';
       this.colorCreateCategory = undefined;
       this.dismissCategory();
@@ -91,7 +91,7 @@ export class EditTaskComponent {
   async createTaskRequest(editedFields: EditTask) {
     this.loadingService.setLoading(true);
     this.task.category = this.task.category.id
-    await this.dataService.editTask(this.sharedData.boardname, editedFields).then(async (response) => {
+    await this.dataService.editTask(editedFields).then(async (response) => {
       this.managePopups.triggerShowTaskDetail(true, response)
     });
     await this.sharedData.setTasks();

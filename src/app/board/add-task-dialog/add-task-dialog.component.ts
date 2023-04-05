@@ -63,7 +63,7 @@ export class AddTaskDialogComponent {
         "color": this.colorCreateCategory
       };
       console.log(newCategory);
-      this.categories.push(await this.dataService.createCategory(newCategory, this.sharedData.boardname));
+      this.categories.push(await this.dataService.createCategory(newCategory));
       this.createCategoryName = '';
       this.colorCreateCategory = undefined;
       this.dismissCategory();
@@ -86,7 +86,7 @@ export class AddTaskDialogComponent {
         "category": this.category,
         "assigned_users": this.getAssignedUsers()
       };
-      await this.dataService.createTask(task, this.sharedData.boardname);
+      await this.dataService.createTask(task);
       await this.sharedData.setTasks();
       this.loadingService.setLoading(false);
       this.closeCard();

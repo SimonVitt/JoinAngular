@@ -104,3 +104,9 @@
     border-radius: 58px;
     margin-right: 5px;
 }
+
+@media(max-width: 1024px){
+  .task-card{
+    margin: 0;
+  }
+}

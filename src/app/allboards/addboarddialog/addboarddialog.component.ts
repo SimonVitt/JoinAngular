@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { GetDataService } from 'src/app/services/get-data.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-addboarddialog',
@@ -16,7 +17,7 @@ export class AddboarddialogComponent {
   showPopUpInput: boolean = false;
   @ViewChild('popUpText') popUpText!: ElementRef;
 
-  constructor(private dataS: GetDataService) {
+  constructor(private dataS: GetDataService, private loadingService: LoadingService) {
     this.username = this.getUsername()!;
 
   }
@@ -30,6 +31,8 @@ export class AddboarddialogComponent {
     let myUser = this.allusers.filter((user: any) => {
       return user.username === this.username;
     });
+    console.log(myUser);
+    console.log(this.allusers);
     this.assignedUsers.push(myUser[0].id);
   }
 
@@ -59,6 +62,7 @@ export class AddboarddialogComponent {
   }
 
   async createBoard() {
+    this.loadingService.setLoading(true);
     const jsonData = {
       "name": this.boardname,
       "board_users": this.assignedUsers

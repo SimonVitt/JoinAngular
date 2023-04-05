@@ -11,6 +11,7 @@ export class ManagePopupsService {
   taskAddedSubject = new Subject<boolean>();
   editTaskSubject = new Subject<boolean>();
   editTaskBSubject = new BehaviorSubject<any>(null);
+  addContactSubject = new Subject<boolean>();
 
 
   constructor() {}
@@ -34,6 +35,10 @@ export class ManagePopupsService {
   triggerEditTask(show: boolean, task: any){
     this.editTaskSubject.next(show);
     this.editTaskBSubject.next(task);
+  }
+
+  triggerAddUser(show: boolean){
+    this.addContactSubject.next(show);
   }
   
 }

@@ -212,3 +212,18 @@
     font-weight: 300;
     font-size: 18px;
 }
+
+@media(max-width: 1024px){
+    
+
+    .card-container{
+        width: unset;
+        max-height: 80vh;
+        overflow-y: auto;
+        min-height: 500px;
+    }
+
+    .alert-delete-task{
+        max-width: 95%;
+    }
+}

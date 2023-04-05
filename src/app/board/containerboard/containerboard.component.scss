@@ -37,3 +37,44 @@
     transform: translateX(-50%);
     z-index: 99;
 }
+
+app-navbar{
+    position: absolute;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    width: 232px;
+}
+
+app-topper{
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 232px;
+    height: 89px;
+}
+
+@media(max-width: 1024px){
+    app-navbar{
+        top: unset;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+        z-index: 1;
+    }
+
+    app-topper{
+        left: 0;
+    }
+
+    app-task-detail{
+        max-width: 95%;
+    }
+}
+
+@media(max-width: 600px){
+    .addTaskTemp{
+        width: 95%;
+    }
+}
