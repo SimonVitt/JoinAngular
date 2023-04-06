@@ -7,7 +7,7 @@ export class ShowpasswordService {
 
   constructor() { }
 
-  //-****************************PASSWORD SHOW AND HIDE FUNCTIONS*****************************************************************
+  //-***********************PASSWORD SHOW AND HIDE FUNCTIONS*****************************************************************
 
   /**
    * This functions checks if the user put something in the inputfield
