@@ -10,23 +10,23 @@ export class GetDataService {
   constructor(private http: HttpClient) { }
 
   getAllBoardsOfUser(){
-    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/boards`));
+    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/boards/`));
   }
 
   getAllUsers(){
-    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/alluser`));
+    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/alluser/`));
   }
 
   getCategories(){
-    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/${this.getId()}/categories`));
+    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/${this.getId()}/categories/`));
   }
 
   getTasks(){
-    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/${this.getId()}/tasks`));
+    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/${this.getId()}/tasks/`));
   }
 
   getUsers(){
-    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/${this.getId()}/users`));
+    return lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/${this.getId()}/users/`));
   }
 
   createBoard(body: any){
