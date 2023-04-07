@@ -10,6 +10,7 @@ import { catchError, lastValueFrom } from 'rxjs';
 
 
 export class AuthService {
+  BASEURL = 'https://joinbackendanywhere.pythonanywhere.com/';
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -30,13 +31,13 @@ export class AuthService {
       "username": username,
       "password": pw
     }
-    return await lastValueFrom(this.http.post("http://127.0.0.1:8000/members/login/", body));
+    return await lastValueFrom(this.http.post(this.BASEURL+"members/login/", body));
   }
 
   async logout(){
     localStorage.removeItem('username');
     sessionStorage.removeItem('username');
-    await lastValueFrom(this.http.get("http://127.0.0.1:8000/members/logout/"));
+    await lastValueFrom(this.http.get(this.BASEURL+"members/logout/"));
     localStorage.removeItem('token');
     sessionStorage.removeItem('token');
   }
@@ -65,7 +66,7 @@ export class AuthService {
       "password": pw,
       "email": email
     }
-    return await lastValueFrom(this.http.post("http://127.0.0.1:8000/members/signup/", body));
+    return await lastValueFrom(this.http.post(this.BASEURL+"members/signup/", body));
   }
 
 }
