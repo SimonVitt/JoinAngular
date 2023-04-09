@@ -498,7 +498,8 @@ option {
 @media(max-width: 1024px){
 
     .content-addtask{
-        max-height: 90vh;
+        justify-content: unset;
+        max-height: 75vh;
         overflow: auto;
     }
 
@@ -513,13 +514,14 @@ option {
     }
 
     .div-button{
+        justify-content: space-evenly;
         margin-top: 4px;
     }
 }
 
 @media(max-width: 500px){
     .content-addtask{
-        padding: 28px 0px;
+        padding: 28px 6px;
     }
 }
 

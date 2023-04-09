@@ -1,5 +1,4 @@
 .help-content {
-    z-index: 100;
     background-color: #F6F7F8;
     position: fixed;
     left: 232px;
@@ -95,7 +94,6 @@
 /* MOBILE VERSION */
 @media(max-width: 1024px) {
     .help-content {
-        z-index: 1;
         background-color: #F6F7F8;
         position: fixed;
         top: 89px;
