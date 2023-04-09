@@ -23,7 +23,7 @@
             </div>
 
             <div id="todo" cdkDropList (cdkDropListDropped)="drop($event)" class="tasks-main" [cdkDropListData]="todoTasks">
-                <app-board-task [cdkDragData]="task" cdkDrag style="min-height:150px" *ngFor="let task of todoTasks" [task]="task" [ngClass]="{'d-none': !task.show}"  (click)="showTaskDetails(task)"></app-board-task>
+                <app-board-task [cdkDragData]="task" cdkDrag style="height:fit-content" *ngFor="let task of todoTasks" [task]="task" [ngClass]="{'d-none': !task.show}"  (click)="showTaskDetails(task)"></app-board-task>
             </div>
 
         </div>
@@ -36,7 +36,7 @@
             </div>
 
             <div id="progress" class="tasks-main" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="progressTasks">
-                <app-board-task [cdkDragData]="task" style="min-height:150px" cdkDrag *ngFor="let task of progressTasks" [task]="task" [ngClass]="{'d-none': !task.show}" (click)="showTaskDetails(task)"></app-board-task>
+                <app-board-task [cdkDragData]="task" style="height:fit-content" cdkDrag *ngFor="let task of progressTasks" [task]="task" [ngClass]="{'d-none': !task.show}" (click)="showTaskDetails(task)"></app-board-task>
             </div>
 
         </div>
@@ -49,7 +49,7 @@
             </div>
 
             <div id="feedback" class="tasks-main" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="feedbackTasks">
-                <app-board-task [cdkDragData]="task" style="min-height:150px" cdkDrag *ngFor="let task of feedbackTasks" [task]="task" [ngClass]="{'d-none': !task.show}" (click)="showTaskDetails(task)"></app-board-task>
+                <app-board-task [cdkDragData]="task" style="height:fit-content" cdkDrag *ngFor="let task of feedbackTasks" [task]="task" [ngClass]="{'d-none': !task.show}" (click)="showTaskDetails(task)"></app-board-task>
             </div>
 
         </div>
@@ -62,7 +62,7 @@
             </div>
 
             <div id="done" class="tasks-main" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="doneTasks">
-                <app-board-task [cdkDragData]="task" style="min-height:150px" cdkDrag *ngFor="let task of doneTasks" [task]="task" [ngClass]="{'d-none': !task.show}" (click)="showTaskDetails(task)"></app-board-task>
+                <app-board-task [cdkDragData]="task" style="height:fit-content" cdkDrag *ngFor="let task of doneTasks" [task]="task" [ngClass]="{'d-none': !task.show}" (click)="showTaskDetails(task)"></app-board-task>
             </div>
 
         </div>
