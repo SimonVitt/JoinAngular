@@ -275,6 +275,14 @@ body{
 
 @media(max-width: 1024px){
 
+    .inner-content::-webkit-scrollbar{
+        display: none;
+    }
+
+    .inner-content{
+        padding-right: 8px;
+    }
+
     .content-destop{
         display: none;
     }

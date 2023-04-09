@@ -419,13 +419,15 @@
         display: flex;
         overflow-x: scroll;
         padding: 8px;
-        padding-bottom: 16px;
+        padding-bottom: 0px;
 
         app-board-task{
             margin-left: 10px;
             min-width: 180px;
         }
     }
+
+  
 }
 
 /* MOBILE VERSION */
@@ -472,6 +474,35 @@
     .heading-search-add {
         width: 100%;
     }
+
+    .inner-content::-webkit-scrollbar{
+        display: none;
+    }
+
+    .inner-content{
+        padding-right: 8px;
+    }
+
+      /* Firefox */
+  .tasks-main {
+    scrollbar-width: auto;
+    scrollbar-color: #2a3647 rgb(246, 247, 248);;
+  }
+
+  /* Chrome, Edge, and Safari */
+  .tasks-main::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .tasks-main::-webkit-scrollbar-track {
+    background: rgb(246, 247, 248);;
+  }
+
+  .tasks-main::-webkit-scrollbar-thumb {
+    background-color: #2a3647;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+  }
 
     .tasks-container {
         width: 100%;
