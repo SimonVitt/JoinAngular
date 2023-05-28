@@ -10,8 +10,7 @@ import { User } from '../interfaces/user';
   providedIn: 'root'
 })
 export class GetDataService {
-  //BASEURL = 'https://joinbackendanywhere.pythonanywhere.com/';
-  BASEURL = 'http://127.0.0.1:8000/';
+  BASEURL = 'https://joinbackendanywhere.pythonanywhere.com/';
 
   constructor(private http: HttpClient) { }
 

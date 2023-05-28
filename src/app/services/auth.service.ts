@@ -10,8 +10,7 @@ import { catchError, lastValueFrom } from 'rxjs';
 
 
 export class AuthService {
-  //BASEURL = 'https://joinbackendanywhere.pythonanywhere.com/';
-  BASEURL = 'http://127.0.0.1:8000/';
+  BASEURL = 'https://joinbackendanywhere.pythonanywhere.com/';
 
   constructor(private router: Router, private http: HttpClient) { }
 
