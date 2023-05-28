@@ -8,7 +8,7 @@ import { LoadingService } from './services/loading.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'joinA';
+  title = 'Join';
 
   showError: boolean = false;
   loading: boolean = false;

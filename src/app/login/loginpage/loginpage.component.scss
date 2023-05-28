@@ -2,7 +2,6 @@
     display: none;
 }
 
-
 .name-icon{
     position: absolute;
     right: 12px;
@@ -10,7 +9,6 @@
     z-index: 5;
     height: 21px;
 }
-
 
 .hover-bright:hover {
     cursor: pointer;
@@ -75,12 +73,11 @@
 .headline {
     margin-top: 4%;
     margin-bottom: 2%;
-}
-
-.headline h1 {
-    font-size: 42px;
-    font-weight: 650;
-    margin: 0;
+    h1 {
+        font-size: 42px;
+        font-weight: 650;
+        margin: 0;
+    }
 }
 
 .headline-underline {
@@ -93,91 +90,36 @@
 .name-field {
     width: 65%;
     margin-bottom: 6%;
+    input {
+        height: 40px;
+        font-size: 15px;
+    }
 }
-
-.name-field input {
-    height: 40px;
-    font-size: 15px;
-}
-
 
 .email-field {
     width: 65%;
     margin-bottom: 6%;
     display: flex;
     position: relative;
-}
-
-.email-field input {
-    height: 40px;
-    box-sizing: border-box;
-    font-size: 15px;
+    input {
+        height: 40px;
+        box-sizing: border-box;
+        font-size: 15px;
+    }
 }
 
 .password-field {
     width: 65%;
     display: flex;
     position: relative;
-}
-
-.password-field input {
-    height: 40px;
-    box-sizing: border-box;
-    font-size: 15px;
-}
-
-.signup-name-field {
-    width: 65%;
-    margin-bottom: 6%;
-    display: flex;
-    position: relative;
-}
-
-.signup-name-field input {
-    height: 40px;
-    font-size: 15px;
-}
-
-
-.signup-email-field {
-    width: 65%;
-    margin-bottom: 6%;
-    display: flex;
-    position: relative;
-}
-
-.signup-email-field input {
-    height: 40px;
-    font-size: 15px;
-}
-
-.signup-password-field {
-    width: 65%;
-    display: flex;
-    position: relative;
-}
-
-.signup-password-field input {
-    height: 40px;
-    font-size: 15px;
+    input {
+        height: 40px;
+        box-sizing: border-box;
+        font-size: 15px;
+    }
 }
 
 .button{
-    padding-left: 22px;
-    padding-right: 22px;
-    height: 36px;
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(42, 54, 71);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.button button {
     padding-left: 22px;
     padding-right: 22px;
     height: 36px;
@@ -388,18 +330,17 @@ margin-right: 10px;
         padding-right: 6%;
         font-size: 17px;
         box-sizing: border-box;
-    }
-
-    .login-head-mobile button {
-        width: 75px;
-        height: 45px;
-        font-size: 14px;
-        font-weight: 600;
-        background-color: rgb(42, 54, 71);
-        color: rgb(255, 255, 255);
-        border-radius: 5px;
-        margin-left: 5%;
-        border: none;
+        button {
+            width: 75px;
+            height: 45px;
+            font-size: 14px;
+            font-weight: 600;
+            background-color: rgb(42, 54, 71);
+            color: rgb(255, 255, 255);
+            border-radius: 5px;
+            margin-left: 5%;
+            border: none;
+        }
     }
      
     .headline {
@@ -459,31 +400,8 @@ margin-right: 10px;
         height: 43px;
     }
 
-    /* Sign up Area*/
-
-    .signUp-area {
-        height: 460px;
-        width: 90%;
-        margin-top: 50px;
-    }
-
     .headline h1 {
         font-size: 30px;
-    }
-
-    .signup-name-field {
-        width: 80%;
-        margin-bottom: 11%;
-    }
-
-    .signup-email-field {
-        width: 80%;
-        margin-bottom: 11%;
-    }
-
-    .signup-password-field {
-        width: 80%;
-        margin-bottom: 4%;
     }
 
     /* Forgot Password*/
@@ -501,19 +419,16 @@ margin-right: 10px;
 
     .headline {
         text-align: center;
-    }
-
-    .headline h2 {
-        font-size: 20px;
-        font-weight: 600;
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+        }
     }
 
     .forgot-password-email-field {
         width: 80%;
     }
 }
-
-/* LOGIN FORM ICONS */
 
 .mail-icon {
     position: absolute;
@@ -538,32 +453,6 @@ margin-right: 10px;
     z-index: 5;
     height: 17px;
 }
-
-.name-signup-icon {
-    position: absolute;
-    right: 11px;
-    top: 11px;
-    z-index: 5;
-    height: 17px;
-}
-
-.mail-signup-icon {
-    position: absolute;
-    right: 11px;
-    top: 12px;
-    z-index: 5;
-    height: 15px;
-}
-
-.password-signup-icon {
-    position: absolute;
-    right: 11px;
-    top: 11px;
-    z-index: 5;
-    height: 17px;
-}
-
-/* USER NOT FOUND */
 
 .user-not-found {
     color: red;

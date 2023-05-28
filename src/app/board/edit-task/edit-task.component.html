@@ -78,7 +78,7 @@
             <div class="dropdown-check-list-contacts" tabindex="100">
                 <span class="anchor" (click)="showUsers = !showUsers">Select Contacts</span>
                 <ul class="items" *ngIf="!resetAssigned" [ngClass]="{'d-none': !showUsers}">
-                    <li *ngFor="let user of users" class="input-contact-listitem" (mouseup)="inputCheckbox.checked = !inputCheckbox.checked; checkUser(user.id)"><input #inputCheckbox [checked]="task.assigned_users.includes(user)" (mouseup)="inputCheckbox.checked = !inputCheckbox.checked; checkUser(user.id);" class="input-contact" type="checkbox" style="margin-right: 42px"/>{{ user.username }}</li>
+                    <li *ngFor="let user of users" class="input-contact-listitem" (mouseup)="inputCheckbox.checked = !inputCheckbox.checked; checkUser(user.id)"><input #inputCheckbox [checked]="task.assigned_users?.includes(user)" (mouseup)="inputCheckbox.checked = !inputCheckbox.checked; checkUser(user.id);" class="input-contact" type="checkbox" style="margin-right: 42px"/>{{ user.username }}</li>
                 </ul>
             </div>
             <div class="assignedContactsDiv"></div>

@@ -4,6 +4,7 @@ import { SharedDataService } from '../services/shared-data.service';
 import { ManagePopupsService } from '../services/manage-popups.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { BoardinfoService } from 'src/app/services/boardinfo.service';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-add-contact',
@@ -11,9 +12,9 @@ import { BoardinfoService } from 'src/app/services/boardinfo.service';
   styleUrls: ['./add-contact.component.scss']
 })
 export class AddContactComponent {
-  allUsers: Array<any> = [];
+  allUsers: Array<User> = [];
   openContacts: boolean = false;
-  members: Array<any> = [];
+  members: Array<User> = [];
   newMembers: Array<number> = [];
   boardId: number| undefined;
   
@@ -23,8 +24,8 @@ export class AddContactComponent {
     this.boardInfo.boardIdBSubject.subscribe((id)=> {
       this.boardId = id;
     })
-    this.allUsers = await this.dataService.getAllUsers() as Array<any>;
-    this.members = await this.dataService.getUsers() as Array<any>;
+    this.allUsers = await this.dataService.getAllUsers() as Array<User>;
+    this.members = await this.dataService.getUsers() as Array<User>;
     this.members.forEach((member) => {
       this.selectContact(member.id);
     });

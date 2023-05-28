@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ManagePopupsService } from '../services/manage-popups.service';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-singlecontact',
@@ -7,8 +8,8 @@ import { ManagePopupsService } from '../services/manage-popups.service';
   styleUrls: ['./singlecontact.component.scss']
 })
 export class SinglecontactComponent {
-  @Input() user: any;
-  @Output() userChange = new EventEmitter<any>();
+  @Input() user!: User;
+  @Output() userChange = new EventEmitter<undefined>();
 
   constructor(private managePopups: ManagePopupsService){}
 

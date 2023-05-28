@@ -4,6 +4,13 @@ import { SharedDataService } from '../services/shared-data.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { GetDataService } from 'src/app/services/get-data.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/user';
+import { Category } from 'src/app/interfaces/category';
+import { Task } from 'src/app/interfaces/task';
+
+interface AddTaskUser extends User {
+  checked?: boolean;  // This field is now optional
+}
 
 @Component({
   selector: 'app-add-task',
@@ -15,11 +22,11 @@ export class AddTaskComponent {
   previousColor: ElementRef | undefined;
   createCategoryName: string = '';
 
-  categories: Array<any> = [];
-  users: Array<any> = [];
+  categories: Array<Category> = [];
+  users: Array<AddTaskUser> = [];
 
   selectedPriority: string | undefined;
-  assignedContacts: Array<any> = [];
+  assignedContacts: Array<number> = [];
   dueDate: Date | undefined;
   category: any = 'Select a Category';
   title: string = '';
@@ -63,7 +70,7 @@ export class AddTaskComponent {
         "name": this.createCategoryName,
         "color": this.colorCreateCategory
       };
-      this.categories.push(await this.dataService.createCategory(newCategory));
+      this.categories.push(await this.dataService.createCategory(newCategory) as Category);
       this.createCategoryName = '';
       this.colorCreateCategory = undefined;
       this.dismissCategory();
@@ -78,10 +85,10 @@ export class AddTaskComponent {
     if (this.checkFilledOut()) {
       this.loadingService.setLoading(true);
       const task = {
-        "priority": this.selectedPriority,
+        "priority": this.selectedPriority as string,
         "title": this.title,
         "description": this.description,
-        "due_date": this.dueDate,
+        "due_date": this.dueDate as Date,
         "status": this.status,
         "category": this.category,
         "assigned_users": this.getAssignedUsers()

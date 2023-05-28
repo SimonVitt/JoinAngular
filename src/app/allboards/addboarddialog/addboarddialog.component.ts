@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { User } from 'src/app/interfaces/user';
 import { GetDataService } from 'src/app/services/get-data.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -9,7 +10,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class AddboarddialogComponent {
   @Output() closeDialog = new EventEmitter<boolean>();
-  allusers: any;
+  allusers: User[] = [];
   username!: string;
   assignedUsers: Array<number> = [];
   boardname: string = '';
@@ -27,8 +28,8 @@ export class AddboarddialogComponent {
   }
 
   async ngOnInit() {
-    this.allusers = await this.dataS.getAllUsers();
-    let myUser = this.allusers.filter((user: any) => {
+    this.allusers = await this.dataS.getAllUsers() as User[];
+    let myUser = this.allusers.filter((user: User) => {
       return user.username === this.username;
     });
     console.log(myUser);

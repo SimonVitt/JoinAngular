@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Task } from 'src/app/interfaces/task';
 
 @Component({
   selector: 'app-board-task',
@@ -6,7 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./board-task.component.scss']
 })
 export class BoardTaskComponent {
-  @Input() task: any;
+  @Input() task!: Task;
 
   ngOnInit(){
     

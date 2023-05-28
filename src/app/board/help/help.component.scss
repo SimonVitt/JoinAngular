@@ -8,63 +8,51 @@
     padding: 32px 80px;
     box-sizing: border-box;
     overflow-y: scroll;
-}
-
-/* ===== Scrollbar CSS ===== */
-  /* Firefox */
-  .help-content {
     scrollbar-width: auto;
     scrollbar-color: #2a3647 #F6F7F8;
-  }
 
-  /* Chrome, Edge, and Safari */
-  .help-content::-webkit-scrollbar {
-    width: 10px;
-  }
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
 
-  .help-content::-webkit-scrollbar-track {
-    background: #F6F7F8;
-  }
+    &::-webkit-scrollbar-track {
+        background: #F6F7F8;
+    }
 
-  .help-content::-webkit-scrollbar-thumb {
-    background-color: #2a3647;
-    border-radius: 10px;
-    border: 1px solid #ffffff;
-  }
+    &::-webkit-scrollbar-thumb {
+        background-color: #2a3647;
+        border-radius: 10px;
+        border: 1px solid #ffffff;
+    }
 
-.help-content img {
-    position: fixed;
-    top: 115px;
-    right: 32px;
-}
+    img {
+        position: fixed;
+        top: 115px;
+        right: 32px;
+        cursor: pointer;
+    }
 
-.help-content img:hover {
-    cursor: pointer;
-}
-
-.help-content h1 {
-    margin: 0;
-    font-size: 48px;
-    margin-bottom: 40px;
+    h1 {
+        margin: 0;
+        font-size: 48px;
+        margin-bottom: 40px;
+    }
 }
 
 .help-table {
     margin-top: 44px;
+
+    span {
+        font-size: 24px;
+        font-weight: bold;
+        margin-right: 24px;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+    }
 }
-
-
-.help-table div {
-    display: flex;
-    align-items: center;
-}
-
-.help-table span {
-    font-size: 24px;
-    font-weight: bold;
-    margin-right: 24px;
-}
-
-/* CSS FOR COLLAPSIBLES */
 
 .collapsible {
     background-color: #777;
@@ -78,7 +66,8 @@
     font-size: 15px;
 }
 
-.active, .collapsible:hover {
+.active,
+.collapsible:hover {
     background-color: #555;
 }
 
@@ -103,38 +92,34 @@
         padding: 32px;
         box-sizing: border-box;
         overflow-y: scroll;
-    }
 
-    .help-content img {
-        position: fixed;
-        top: 100px;
-        right: 12px;
-    }
+        img {
+            position: fixed;
+            top: 100px;
+            right: 12px;
+            cursor: pointer;
+        }
 
-    .help-content img:hover {
-        cursor: pointer;
-    }
-
-    .help-content h1 {
-        margin: 0;
-        font-size: 48px;
-        margin-bottom: 40px;
+        h1 {
+            margin: 0;
+            font-size: 48px;
+            margin-bottom: 40px;
+        }
     }
 
     .help-table {
         margin-top: 44px;
         padding-bottom: 40px;
-    }
 
+        div {
+            display: flex;
+            align-items: center;
+        }
 
-    .help-table div {
-        display: flex;
-        align-items: center;
-    }
-
-    .help-table span {
-        font-size: 24px;
-        font-weight: bold;
-        margin-right: 24px;
+        span {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 24px;
+        }
     }
 }

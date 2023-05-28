@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ResetPasswordBody } from 'src/app/interfaces/resetPasswordBody';
 import { AuthService } from 'src/app/services/auth.service';
 import { GetDataService } from 'src/app/services/get-data.service';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -42,7 +43,7 @@ export class ResetpasswordComponent {
     this.passwordsNotSame = false;
     this.sthWentWrong = false;
     try {
-      const body = {
+      const body:ResetPasswordBody = {
         "password1": this.resetPwForm.get('password1')!.value,
         "password2": this.resetPwForm.get('password2')!.value
       }

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SharedDataService } from '../services/shared-data.service';
-
+import { Task } from 'src/app/interfaces/task';
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
@@ -30,36 +30,37 @@ export class SummaryComponent {
   }
 
   getAllTasks() {
-    this.sharedData.allTasksBSubject.subscribe((tasks: Array<any>) => {
+    this.sharedData.allTasksBSubject.subscribe((tasks: Array<Task>) => {
       this.setDataFromAllTasks(tasks);
     });
-    this.sharedData.progressTasksBSubject.subscribe((tasks: Array<any>) => {
+    this.sharedData.progressTasksBSubject.subscribe((tasks: Array<Task>) => {
       this.tasksProgressNumber = tasks.length;
     });
-    this.sharedData.feedbackTasksBSubject.subscribe((tasks: Array<any>) => {
+    this.sharedData.feedbackTasksBSubject.subscribe((tasks: Array<Task>) => {
       this.tasksFeedbackNumber = tasks.length;
     });
-    this.sharedData.todoTasksBSubject.subscribe((tasks: Array<any>) => {
+    this.sharedData.todoTasksBSubject.subscribe((tasks: Array<Task>) => {
       this.tasksTodoNumber = tasks.length;
     });
-    this.sharedData.doneTasksBSubject.subscribe((tasks: Array<any>) => {
+    this.sharedData.doneTasksBSubject.subscribe((tasks: Array<Task>) => {
       this.tasksDoneNumber = tasks.length;
     });
   }
 
-  setDataFromAllTasks(tasks: Array<any>) {
+  setDataFromAllTasks(tasks: Array<Task>) {
     this.tasksNumber = tasks.length;
-    const uTasks = tasks.filter((task: any) => {
+    const uTasks = tasks.filter((task: Task) => {
       return task.priority === 'urgent';
     });
     this.urgentTodoNumber = uTasks.length;
-    const dTasks = tasks.sort((a, b) => {
+    const dTasks: Task[] = tasks.sort((a, b) => {
       const dateA = new Date(a.due_date);
       const dateB = new Date(b.due_date);
       return dateA.getTime() - dateB.getTime();
     });
-    if (dTasks.length > 0) {
-      const dateParts = dTasks[0].due_date.split("-");
+    if (dTasks.length > 0 && typeof dTasks[0].due_date === 'string') {
+      const nearestDay = dTasks[0].due_date as string;
+      const dateParts = nearestDay.split("-");
       this.upcomingDeadline = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
     }
   }

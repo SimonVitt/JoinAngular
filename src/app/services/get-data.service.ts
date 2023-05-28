@@ -1,12 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { EditTask } from '../interfaces/editTask';
+import { ResetPasswordBody } from '../interfaces/resetPasswordBody';
+import { Task } from '../interfaces/task';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetDataService {
-  BASEURL = 'https://joinbackendanywhere.pythonanywhere.com/';
+  //BASEURL = 'https://joinbackendanywhere.pythonanywhere.com/';
+  BASEURL = 'http://127.0.0.1:8000/';
 
   constructor(private http: HttpClient) { }
 
@@ -15,53 +20,53 @@ export class GetDataService {
   }
 
   getAllUsers(){
-    return lastValueFrom(this.http.get(this.BASEURL+`api/alluser/`));
+    return lastValueFrom(this.http.get(this.BASEURL+`api/users/`));
   }
 
   getCategories(){
-    return lastValueFrom(this.http.get(this.BASEURL+`api/${this.getId()}/categories/`));
+    return lastValueFrom(this.http.get(this.BASEURL+`api/boards/${this.getId()}/categories/`));
   }
 
   getTasks(){
-    return lastValueFrom(this.http.get(this.BASEURL+`api/${this.getId()}/tasks/`));
+    return lastValueFrom(this.http.get(this.BASEURL+`api/boards/${this.getId()}/tasks/`));
   }
 
   getUsers(){
-    return lastValueFrom(this.http.get(this.BASEURL+`api/${this.getId()}/users/`));
+    return lastValueFrom(this.http.get(this.BASEURL+`api/boards/${this.getId()}/users/`));
   }
 
-  createBoard(body: any){
-    return lastValueFrom(this.http.post(this.BASEURL+`api/createboard/`, body));
+  createBoard(body: { name: string; board_users: number[]; }){
+    return lastValueFrom(this.http.post(this.BASEURL+`api/boards/`, body));
   }
 
-  createTask(body: any){
-    return lastValueFrom(this.http.post(this.BASEURL+`api/${this.getId()}/tasks/`, body));
+  createTask(body: EditTask){
+    return lastValueFrom(this.http.post(this.BASEURL+`api/boards/${this.getId()}/tasks/`, body));
   }
 
-  createCategory(body:any){
-    return lastValueFrom(this.http.post(this.BASEURL+`api/${this.getId()}/categories/`, body))
+  createCategory(body:{ name: string; color: string; }){
+    return lastValueFrom(this.http.post(this.BASEURL+`api/boards/${this.getId()}/categories/`, body))
   }
 
-  sendEmailReset(body: any){
+  sendEmailReset(body: {email: string;}){
     return lastValueFrom(this.http.post(this.BASEURL+`members/sendemail/`, body));
   }
 
-  resetPassword(body: any){
+  resetPassword(body: ResetPasswordBody){
     return lastValueFrom(this.http.patch(this.BASEURL+`members/changepassword/`, body));
   }
 
   deleteTask(id: number){
-    return lastValueFrom(this.http.delete(this.BASEURL+`api/${this.getId()}/tasks/${id}/`));
+    return lastValueFrom(this.http.delete(this.BASEURL+`api/boards/${this.getId()}/tasks/${id}/`));
   }
 
-  editTask(body: any){
+  editTask(body: EditTask){
     const id = body.id;
     delete body.id;
-    return lastValueFrom(this.http.patch(this.BASEURL+`api/${this.getId()}/tasks/${id}/`, body));
+    return lastValueFrom(this.http.patch(this.BASEURL+`api/boards/${this.getId()}/tasks/${id}/`, body));
   }
 
-  editBoard(body: any){
-    return lastValueFrom(this.http.patch(this.BASEURL+`api/createboard/${this.getId()}/`, body));
+  editBoard(body: { board_users: number[]; }){
+    return lastValueFrom(this.http.patch(this.BASEURL+`api/boards/${this.getId()}/`, body));
   }
 
   getId(){

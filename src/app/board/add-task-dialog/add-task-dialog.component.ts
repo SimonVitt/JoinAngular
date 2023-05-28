@@ -3,6 +3,13 @@ import { GetDataService } from 'src/app/services/get-data.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ManagePopupsService } from '../services/manage-popups.service';
 import { SharedDataService } from '../services/shared-data.service';
+import { User } from 'src/app/interfaces/user';
+import { Category } from 'src/app/interfaces/category';
+import { EditTask } from 'src/app/interfaces/editTask';
+
+interface AddTaskUser extends User {
+  checked?: boolean;  // This field is now optional
+}
 
 @Component({
   selector: 'app-add-task-dialog',
@@ -14,11 +21,11 @@ export class AddTaskDialogComponent {
   previousColor: ElementRef | undefined;
   createCategoryName: string = '';
 
-  categories: Array<any> = [];
-  users: Array<any> = [];
+  categories: Array<Category> = [];
+  users: Array<AddTaskUser> = [];
 
   selectedPriority: string | undefined;
-  assignedContacts: Array<any> = [];
+  assignedContacts: Array<number> = [];
   dueDate: Date | undefined;
   category: any = 'Select a Category';
   title: string = '';
@@ -63,7 +70,7 @@ export class AddTaskDialogComponent {
         "color": this.colorCreateCategory
       };
       console.log(newCategory);
-      this.categories.push(await this.dataService.createCategory(newCategory));
+      this.categories.push(await this.dataService.createCategory(newCategory) as Category);
       this.createCategoryName = '';
       this.colorCreateCategory = undefined;
       this.dismissCategory();
@@ -77,11 +84,11 @@ export class AddTaskDialogComponent {
     this.resetErrors();
     if (this.checkFilledOut()) {
       this.loadingService.setLoading(true);
-      const task = {
-        "priority": this.selectedPriority,
+      const task:EditTask = {
+        "priority": this.selectedPriority as string,
         "title": this.title,
         "description": this.description,
-        "due_date": this.dueDate,
+        "due_date": this.dueDate as Date,
         "status": this.status,
         "category": this.category,
         "assigned_users": this.getAssignedUsers()

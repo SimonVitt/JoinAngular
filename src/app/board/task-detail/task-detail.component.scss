@@ -9,10 +9,9 @@
     bottom: 32px;
     right: 32px;
     cursor: pointer;
-}
-
-.edit-overlay-btn:hover {
-    background: #29ABE2;
+    &:hover {
+        background: #29ABE2;
+    }
 }
 
 .edit-overlay-btn-delete {
@@ -25,15 +24,13 @@
     bottom: 96px;
     right: 32px;
     cursor: pointer;
-}
-
-.edit-overlay-btn-delete img {
-    height: 28px;
-    object-fit: contain;
-}
-
-.edit-overlay-btn-delete:hover {
-    background: #29ABE2;
+    img {
+        height: 28px;
+        object-fit: contain;
+    }
+    &:hover {
+        background: #29ABE2;
+    }
 }
 
 .directionLTR {
@@ -51,7 +48,6 @@
 }
 
 .card-description-big {
-    /* color: #A8A8A8; */
     font-size: 22px;
     font-weight: 300;
     margin-bottom: 32px;
@@ -151,29 +147,26 @@
     width: 80%;
     display: flex;
     justify-content: space-between;
-}
-
-.alert-delete-task-btn button {
-    font-size: 20px;
-    width: 120px;
-    height: 44px;
-    background: #2A3647;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    color: white;
+    button {
+        font-size: 20px;
+        width: 120px;
+        height: 44px;
+        background: #2A3647;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        color: white;
+        &:hover {
+            background: #29ABE2;
+        }
+    }
 }
 
 .alert-delete-delete-btn {
     background-color: red !important;
-}
-
-.alert-delete-delete-btn:hover {
-    background-color: rgb(255, 105, 105) !important;
-}
-
-.alert-delete-task-btn button:hover {
-    background: #29ABE2;
+    &:hover {
+        background-color: rgb(255, 105, 105) !important;
+    }
 }
 
 .contributor-container {

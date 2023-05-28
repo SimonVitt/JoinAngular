@@ -4,7 +4,7 @@
     <span class="card-description">{{ task.description }}</span>
     <div class="card-bottom">
         <div class="contributors-container">
-            <span *ngFor="let user of task.assigned_users" class="contributors-circle" [style.background-color]="user.color">{{ user.username.charAt(0).toUpperCase() }}</span>
+            <span *ngFor="let user of task.assigned_users" class="contributors-circle" [style.background-color]="user.color ?? 'green'">{{ user.username.charAt(0).toUpperCase() }}</span>
         </div>
         <img src="assets/img/{{task.priority}}.svg">
     </div>

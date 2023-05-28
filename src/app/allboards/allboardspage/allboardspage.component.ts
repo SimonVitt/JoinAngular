@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Board } from 'src/app/interfaces/board';
 import { AuthService } from 'src/app/services/auth.service';
 import { BoardinfoService } from 'src/app/services/boardinfo.service';
 import { GetDataService } from 'src/app/services/get-data.service';
@@ -11,12 +12,12 @@ import { GetDataService } from 'src/app/services/get-data.service';
 })
 export class AllboardspageComponent {
   dialogOpen: boolean = false;
-  boards: any = [];
+  boards: Board[] = [];
 
   constructor(private data: GetDataService, private authService: AuthService, private router: Router, private boardInfo: BoardinfoService) { }
 
   async ngOnInit() {
-    this.boards = await this.data.getAllBoardsOfUser();
+    this.boards = await this.data.getAllBoardsOfUser() as Board[];
   }
 
   async logout(){

@@ -1,5 +1,3 @@
-
-
 .content-destop {
     width: 100%;
     /* min-width: 1024px; */
@@ -11,7 +9,7 @@
     position: relative;
 }
 
-.tasks-main{
+.tasks-main {
     min-height: 80%;
 }
 
@@ -26,29 +24,24 @@
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
-}
-
-/* ===== Scrollbar CSS ===== */
-  /* Firefox */
-  .inner-content {
     scrollbar-width: auto;
     scrollbar-color: #2a3647 #F6F7F8;
-  }
 
-  /* Chrome, Edge, and Safari */
-  .inner-content::-webkit-scrollbar {
-    width: 10px;
-  }
+    /* Chrome, Edge, and Safari */
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
 
-  .inner-content::-webkit-scrollbar-track {
-    background: #F6F7F8;
-  }
+    &::-webkit-scrollbar-track {
+        background: #F6F7F8;
+    }
 
-  .inner-content::-webkit-scrollbar-thumb {
-    background-color: #2a3647;
-    border-radius: 10px;
-    border: 1px solid #ffffff;
-  }
+    &::-webkit-scrollbar-thumb {
+        background-color: #2a3647;
+        border-radius: 10px;
+        border: 1px solid #ffffff;
+    }
+}
 
 .alert-delete-task-container {
     position: fixed;
@@ -74,6 +67,9 @@
     align-items: center;
     padding-top: 48px;
     box-sizing: border-box;
+    h2 {
+        text-align: center;
+    }
 }
 
 .close-overlay-btn-delete {
@@ -85,38 +81,31 @@
     cursor: pointer;
 }
 
-.alert-delete-task h2 {
-    text-align: center;
-}
-
 .alert-delete-task-btn {
     margin-top: 32px;
     width: 80%;
     display: flex;
     justify-content: space-between;
-}
-
-.alert-delete-task-btn button {
-    font-size: 20px;
-    width: 120px;
-    height: 44px;
-    background: #2A3647;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    color: white;
-}
+    button {
+        font-size: 20px;
+        width: 120px;
+        height: 44px;
+        background: #2A3647;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        color: white;
+        &:hover {
+            background: #29ABE2;
+        }
+    }
+} 
 
 .alert-delete-delete-btn {
     background-color: red !important;
-}
-
-.alert-delete-delete-btn:hover {
-    background-color: rgb(255, 105, 105) !important;
-}
-
-.alert-delete-task-btn button:hover {
-    background: #29ABE2;
+    &:hover {
+        background-color: rgb(255, 105, 105) !important;
+    }
 }
 
 .main-heading {
@@ -189,6 +178,11 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    &:hover {
+        background-color: #29ABE2;
+        box-shadow: #2A3647;
+        border: none;
+    }
 }
 
 .add-task-btn-mobile {
@@ -202,19 +196,11 @@
     font-size: 18px;
     cursor: pointer;
     display: none;
-
-}
-
-.add-task-btn:hover {
-    background-color: #29ABE2;
-    box-shadow: #2A3647;
-    border: none;
-}
-
-.add-task-btn-mobile:hover {
-    background-color: #29ABE2;
-    box-shadow: #2A3647;
-    border: none;
+    &:hover {
+        background-color: #29ABE2;
+        box-shadow: #2A3647;
+        border: none;
+    }
 }
 
 .tasks-container {
@@ -241,7 +227,7 @@
     justify-content: space-between;
     font-size: 21px;
 
-    span{
+    span {
         cursor: pointer;
     }
 }
@@ -251,53 +237,32 @@
     object-fit: cover;
     height: 30px;
     width: 30px;
+    &:hover {
+        background-image: url('./../../../assets/img/plus_blue.svg');
+    }
 }
-
-.plus-icon:hover {
-    background-image: url('./../../../assets/img/plus_blue.svg');
-}
-
-
-/* TASK CARDS */
-
-
-
-
-
-
-/* CARD VIEW OVERLAY */
-
-
 
 .task-overly-details {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
     direction: rtl;
-}
-
-/* ===== Scrollbar CSS ===== */
-  /* Firefox */
-  .task-overly-details {
     scrollbar-width: auto;
     scrollbar-color: #2a3647 #ffffff;
-  }
-
-  /* Chrome, Edge, and Safari */
-  .task-overly-details::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  .task-overly-details::-webkit-scrollbar-track {
-    background: #ffffff;
-  }
-
-  .task-overly-details::-webkit-scrollbar-thumb {
-    background-color: #2a3647;
-    border-radius: 10px;
-    border: 1px solid #ffffff;
-  }
-
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: #ffffff;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: #2a3647;
+        border-radius: 10px;
+        border: 1px solid #ffffff;
+    }
+}
 
 .headingMoveStatusBtns {
     display: none;
@@ -306,12 +271,6 @@
 .moveStatusBtns {
     display: none;
 }
-
-
-
-
-
-/* COLORS FOR CONTRIBUTORS */
 
 .blue {
     background-color: #0390E0 !important;
@@ -397,37 +356,37 @@
 }
 
 @media(max-width:1024px) {
-    
-    .inner-content{
+
+    .inner-content {
         width: unset;
         left: 0;
         right: 0;
         padding-left: 8px;
     }
 
-    .tasks-container{
+    .tasks-container {
         padding-bottom: 90px;
     }
 
-    .task{
+    .task {
         width: unset;
         height: unset;
         min-height: unset;
     }
 
-    .tasks-main{
+    .tasks-main {
         display: flex;
         overflow-x: scroll;
         padding: 8px;
         padding-bottom: 0px;
 
-        app-board-task{
+        app-board-task {
             margin-left: 10px;
             min-width: 180px;
         }
     }
 
-  
+
 }
 
 /* MOBILE VERSION */
@@ -475,34 +434,36 @@
         width: 100%;
     }
 
-    .inner-content::-webkit-scrollbar{
+    .inner-content::-webkit-scrollbar {
         display: none;
     }
 
-    .inner-content{
+    .inner-content {
         padding-right: 8px;
     }
 
-      /* Firefox */
-  .tasks-main {
-    scrollbar-width: auto;
-    scrollbar-color: #2a3647 rgb(246, 247, 248);;
-  }
+    /* Firefox */
+    .tasks-main {
+        scrollbar-width: auto;
+        scrollbar-color: #2a3647 rgb(246, 247, 248);
+        ;
+    }
 
-  /* Chrome, Edge, and Safari */
-  .tasks-main::-webkit-scrollbar {
-    width: 6px;
-  }
+    /* Chrome, Edge, and Safari */
+    .tasks-main::-webkit-scrollbar {
+        width: 6px;
+    }
 
-  .tasks-main::-webkit-scrollbar-track {
-    background: rgb(246, 247, 248);;
-  }
+    .tasks-main::-webkit-scrollbar-track {
+        background: rgb(246, 247, 248);
+        ;
+    }
 
-  .tasks-main::-webkit-scrollbar-thumb {
-    background-color: #2a3647;
-    border-radius: 10px;
-    border: 1px solid #ffffff;
-  }
+    .tasks-main::-webkit-scrollbar-thumb {
+        background-color: #2a3647;
+        border-radius: 10px;
+        border: 1px solid #ffffff;
+    }
 
     .tasks-container {
         width: 100%;
@@ -582,10 +543,9 @@
         border: none;
         cursor: pointer;
         color: white;
-    }
-
-    .edit-overlay-btn-statusnext:hover {
-        background: #29ABE2;
+        &:hover {
+            background: #29ABE2;
+        }
     }
 }
 

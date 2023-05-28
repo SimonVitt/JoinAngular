@@ -5,6 +5,13 @@ import { ManagePopupsService } from '../services/manage-popups.service';
 import { SharedDataService } from '../services/shared-data.service';
 import { EditTask } from 'src/app/interfaces/editTask';
 import { Subscription } from 'rxjs';
+import { User } from 'src/app/interfaces/user';
+import { Category } from 'src/app/interfaces/category';
+import { Task } from 'src/app/interfaces/task';
+
+interface EditTaskUser extends User {
+  checked?: boolean;  // This field is now optional
+}
 
 @Component({
   selector: 'app-edit-task',
@@ -12,14 +19,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./edit-task.component.scss']
 })
 export class EditTaskComponent {
-  task: any;
-  originalTask: any;
+  task!: EditTask;
+  originalTask!: Task;
   createCategoryName: string = '';
 
-  categories: Array<any> = [];
+  categories: Array<Category> = [];
   users: Array<any> = [];
 
-  assignedContacts: Array<any> = [];
+  assignedContacts: Array<number> = [];
 
   colorCreateCategory: string | undefined;
 
@@ -41,10 +48,19 @@ export class EditTaskComponent {
 
   ngOnInit() {
     this.subToEditTask =  this.managePopups.editTaskBSubject.subscribe((task) => {
-      this.task = Object.assign({}, task);
-      this.task.category = this.task.category.id;
-      this.originalTask = task;
-      this.task.assigned_users = [];
+      if(task){
+        this.task = {
+          id: task.id,
+          priority: task.priority,
+          title: task.title,
+          description: task.description,
+          due_date: task.due_date,
+          status: task.status,
+          category: task.category.id,
+          assigned_users: task.assigned_users.map(user => user.id)
+      }
+        this.originalTask = task;
+      }
     });
     this.sharedData.categoriesBSubject.subscribe((data) => {
       this.categories = data;
@@ -67,7 +83,7 @@ export class EditTaskComponent {
         "name": this.createCategoryName,
         "color": this.colorCreateCategory
       };
-      this.categories.push(await this.dataService.createCategory(newCategory));
+      this.categories.push(await this.dataService.createCategory(newCategory) as Category);
       this.createCategoryName = '';
       this.colorCreateCategory = undefined;
       this.dismissCategory();
@@ -92,15 +108,15 @@ export class EditTaskComponent {
     this.loadingService.setLoading(true);
     this.task.category = this.task.category.id
     await this.dataService.editTask(editedFields).then(async (response) => {
-      this.managePopups.triggerShowTaskDetail(true, response)
+      this.managePopups.triggerShowTaskDetail(true, response as Task)
     });
     await this.sharedData.setTasks();
     this.loadingService.setLoading(false);
   }
 
   checkFilledOut() {
-    this.titleError = this.task.title.length == 0;
-    this.descriptionError = this.task.description.length == 0;
+    this.titleError = this.task.title!.length == 0;
+    this.descriptionError = this.task.description!.length == 0;
     this.categoryError = this.task.category === 'Select a Category';
     this.prioError = !this.task.priority;
     this.dateError = !this.task.due_date;
@@ -146,8 +162,8 @@ export class EditTaskComponent {
       "id": this.originalTask.id
     };
     this.task.assigned_users = this.getAssignedUsers();
-    if (!(this.task.assigned_users.length == this.originalTask.assigned_users.length && 
-      this.task.assigned_users.every((id:number) => this.originalTask.assigned_users.some((user:any) => user.id === id)))) {
+    if (!(this.task.assigned_users.length == this.originalTask.assigned_users!.length && 
+      this.task.assigned_users.every((id:number) => this.originalTask.assigned_users!.some((user:any) => user.id === id)))) {
       editedFields.assigned_users = this.task.assigned_users;
     }
     if (this.task.category != this.originalTask.category.id) {

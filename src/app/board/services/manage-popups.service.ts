@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { Task } from 'src/app/interfaces/task';
 
 @Injectable({
   providedIn: 'root'
@@ -7,18 +8,20 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class ManagePopupsService {
   showTaskDetailS  = new Subject<boolean>();
   showAddTaskDialogS = new BehaviorSubject<[boolean, string]>([false, 'todo']);
-  openedTask = new BehaviorSubject<any>(null);
+  openedTask = new BehaviorSubject<Task | null>(null);
   taskAddedSubject = new Subject<boolean>();
   editTaskSubject = new Subject<boolean>();
-  editTaskBSubject = new BehaviorSubject<any>(null);
+  editTaskBSubject = new BehaviorSubject<Task | null>(null);
   addContactSubject = new Subject<boolean>();
 
 
   constructor() {}
 
-  triggerShowTaskDetail(show: boolean, task: any){
+  triggerShowTaskDetail(show: boolean, task: Task | null){
     this.showTaskDetailS.next(show);
-    this.openedTask.next(task);
+    if(task){
+      this.openedTask.next(task);
+    }
   }
 
   triggerShowAddTaskDialog(show: boolean, status: string){
@@ -32,9 +35,11 @@ export class ManagePopupsService {
     }, 2000);
   }
 
-  triggerEditTask(show: boolean, task: any){
+  triggerEditTask(show: boolean, task: Task | null){
     this.editTaskSubject.next(show);
-    this.editTaskBSubject.next(task);
+    if(task){
+      this.editTaskBSubject.next(task);
+    }
   }
 
   triggerAddUser(show: boolean){

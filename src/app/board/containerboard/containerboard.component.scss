@@ -71,6 +71,14 @@ app-topper{
     app-task-detail{
         max-width: 95%;
     }
+
+    .taskaddedpopup{
+        position: fixed;
+        top: 78%;
+        left: calc(50%);
+        transform: translateX(-50%);
+        z-index: 99;
+    }
 }
 
 @media(max-width: 600px){

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GetDataService } from 'src/app/services/get-data.service';
 import { ManagePopupsService } from '../services/manage-popups.service';
 import { SharedDataService } from '../services/shared-data.service';
+import { Task } from 'src/app/interfaces/task';
 
 @Component({
   selector: 'app-containerboard',
@@ -11,7 +12,7 @@ import { SharedDataService } from '../services/shared-data.service';
 })
 export class ContainerboardComponent {
   boardname: string;
-  tasks: Array<any> | undefined;
+  tasks: Array<Task> | undefined;
   statusToCreate: string = 'todo';
 
   showTaskDetail: boolean = false;
