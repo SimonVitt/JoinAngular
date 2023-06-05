@@ -84,6 +84,7 @@ export class AddTaskDialogComponent {
     this.resetErrors();
     if (this.checkFilledOut()) {
       this.loadingService.setLoading(true);
+      this.category = this.categories.find(category => category.id === +this.category);
       const task:EditTask = {
         "priority": this.selectedPriority as string,
         "title": this.title,

@@ -16,10 +16,10 @@ export class AuthService {
 
   async logIn(username: string, pw: string, rememberMe: boolean) {
     let resp: any = await this.loginWithUsernameAndPw(username, pw);
-    if(rememberMe){
+    if (rememberMe) {
       localStorage.setItem('token', resp['token']);
       localStorage.setItem('username', resp['username']);
-    }else{
+    } else {
       sessionStorage.setItem('token', resp['token']);
       sessionStorage.setItem('username', resp['username']);
     }
@@ -31,28 +31,31 @@ export class AuthService {
       "username": username,
       "password": pw
     }
-    return await lastValueFrom(this.http.post(this.BASEURL+"members/login/", body));
+    return await lastValueFrom(this.http.post(this.BASEURL + "members/login/", body));
   }
 
-  async logout(){
+  async logout() {
     localStorage.removeItem('username');
     sessionStorage.removeItem('username');
-    await lastValueFrom(this.http.get(this.BASEURL+"members/logout/"));
-    localStorage.removeItem('token');
-    sessionStorage.removeItem('token');
+    if (sessionStorage.getItem('token') || localStorage.getItem('token')) {
+      await lastValueFrom(this.http.post(this.BASEURL + "members/logout/", {}));
+      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
+    }
+    this.router.navigateByUrl(`login`);
   }
 
-  userIsAuthenticated(){
+  userIsAuthenticated() {
     let tokenL = localStorage.getItem('token');
     let tokenS = sessionStorage.getItem('token');
-    if(tokenL){
-      if(tokenL!.length > 20){
+    if (tokenL) {
+      if (tokenL!.length > 20) {
         return true;
       }
       return false;
     }
-    if(tokenS){
-      if(tokenS!.length > 20){
+    if (tokenS) {
+      if (tokenS!.length > 20) {
         return true;
       }
       return false;
@@ -60,13 +63,13 @@ export class AuthService {
     return false;
   }
 
-  async signup(username: string, pw: string, email: string){
+  async signup(username: string, pw: string, email: string) {
     const body = {
       "username": username,
       "password": pw,
       "email": email
     }
-    return await lastValueFrom(this.http.post(this.BASEURL+"members/signup/", body));
+    return await lastValueFrom(this.http.post(this.BASEURL + "members/signup/", body));
   }
 
 }
