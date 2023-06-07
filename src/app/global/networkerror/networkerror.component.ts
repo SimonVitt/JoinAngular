@@ -17,8 +17,6 @@ export class NetworkerrorComponent {
   closeNetworkalert(){
     this.closeNetwork.emit();
     this.loadingService.setLoading(false);
-    this.returnToLogin();
-
   }
 
   returnToLogin(){
